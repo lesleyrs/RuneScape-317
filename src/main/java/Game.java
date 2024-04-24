@@ -20,6 +20,7 @@ import java.util.zip.CRC32;
 
 public class Game extends GameShell {
 
+    public static Game instance;
     public static final int[][] designPartColor = {{6798, 107, 10283, 16, 4797, 7744, 5799, 4634, 33697, 22433, 2983, 54193}, {8741, 12, 64030, 43162, 7735, 8404, 1701, 38430, 24094, 10153, 56621, 4783, 1341, 16578, 35003, 25239}, {25238, 8742, 12, 64030, 43162, 7735, 8404, 1701, 38430, 24094, 10153, 56621, 4783, 1341, 16578, 35003}, {4626, 11146, 6439, 12, 4758, 10270}, {4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574}};
     public static final int[] designHairColor = {9104, 10275, 7595, 3610, 7975, 8526, 918, 38802, 24466, 10145, 58654, 5027, 1457, 16565, 34991, 25486};
     public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");
@@ -129,8 +130,8 @@ public class Game extends GameShell {
         Signlink.storeid = Integer.parseInt(args[4]);
         Signlink.startpriv();
 
-        Game game = new Game();
-        game.init(765, 503);
+        instance = new Game();
+        instance.init(765, 503);
     }
 
     public static String getCombatLevelColorTag(int viewerLevel, int otherLevel) {
