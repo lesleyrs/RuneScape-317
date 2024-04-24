@@ -9069,6 +9069,13 @@ public class Game extends GameShell {
         }
     }
 
+    void mouseWheelDragged(int i, int j) {
+        if (!mouseWheelDown)
+            return;
+        this.orbitCameraYawVelocity += i * 3;
+        this.orbitCameraPitchVelocity += (j << 1);
+    }
+
     public void updateOrbitCamera() {
         int orbitX = localPlayer.x + cameraAnticheatOffsetX;
         int orbitZ = localPlayer.z + cameraAnticheatOffsetZ;

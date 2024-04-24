@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 
-public abstract class GameShell extends JComponent implements Runnable, MouseListener, MouseMotionListener, KeyListener, FocusListener, WindowListener {
+public abstract class GameShell extends JComponent implements Runnable, MouseListener, MouseMotionListener, MouseWheelListener, KeyListener, FocusListener, WindowListener {
 
     public final long[] otim = new long[10];
     public final double[] frameTime = new double[100];
@@ -38,6 +38,9 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
     public long mouseClickTime;
     public int keyQueueReadPos;
     public int keyQueueWritePos;
+    public boolean mouseWheelDown;
+    public int mouseWheelX;
+    public int mouseWheelY;
 
     public void init(int width, int height) {
         screenWidth = width;
@@ -62,6 +65,7 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
         try {
             this.addMouseListener(this);
             this.addMouseMotionListener(this);
+            this.addMouseWheelListener(this);
             this.addKeyListener(this);
             this.addFocusListener(this);
 
@@ -248,6 +252,13 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
         lastMouseClickY = y;
         lastMouseClickTime = System.currentTimeMillis();
 
+        if (SwingUtilities.isMiddleMouseButton(e)) {
+            mouseWheelDown = true;
+            mouseWheelX = mouseX;
+            mouseWheelY = mouseY;
+            return;
+        }
+
         if (SwingUtilities.isRightMouseButton(e)) {
             lastMouseClickButton = 2;
             mouseButton = 2;
@@ -261,6 +272,7 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
     public void mouseReleased(MouseEvent e) {
         idleCycles = 0;
         mouseButton = 0;
+        mouseWheelDown = false;
     }
 
     @Override
@@ -285,6 +297,14 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
         idleCycles = 0;
         mouseX = x;
         mouseY = y;
+
+        if (mouseWheelDown) {
+            mouseY = mouseWheelX - e.getX();
+            int k = mouseWheelY - e.getY();
+            mouseWheelDragged(mouseY, -k);
+            mouseWheelX = e.getX();
+            mouseWheelY = e.getY();
+        }
     }
 
     @Override
@@ -294,6 +314,12 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
         idleCycles = 0;
         mouseX = x;
         mouseY = y;
+    }
+
+    void mouseWheelDragged(int param1, int param2) {
+    }
+
+    public void mouseWheelMoved(MouseWheelEvent e) {
     }
 
     @Override
