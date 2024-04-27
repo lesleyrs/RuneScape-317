@@ -1579,7 +1579,7 @@ public class Game extends GameShell {
         Draw2D.drawLineX(0, 77, 479, 0);
     }
 
-    static String server = "0.0.0.0";
+    static String server = "localhost";
 
     public Socket openSocket(int port) throws IOException {
         return new Socket(InetAddress.getByName(server), port);
