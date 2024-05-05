@@ -6145,9 +6145,11 @@ public class Game extends GameShell {
 
     private void handleInputAmountKey(int key) {
         // https://www.asciitable.com/
-        if ((key >= '0') && (key <= '9') && (chatbackInput.length() < 10)) {
-            chatbackInput += (char) key;
-            redrawChatback = true;
+        if ((key >= '0' && key <= '9' || key == 'k' || key == 'm' || key == 'b') && (chatbackInput.length() < 10)) {
+            if (!chatbackInput.toLowerCase().endsWith("k") && !chatbackInput.toLowerCase().endsWith("m") && !chatbackInput.toLowerCase().endsWith("b")) {
+                chatbackInput += (char) key;
+                redrawChatback = true;
+            }
         }
         if ((key == KeyEvent.VK_BACK_SPACE) && (chatbackInput.length() > 0)) {
             chatbackInput = chatbackInput.substring(0, chatbackInput.length() - 1);
@@ -6155,10 +6157,25 @@ public class Game extends GameShell {
         }
         if ((key == 13) || (key == KeyEvent.VK_ENTER)) {
             if (chatbackInput.length() > 0) {
+                switch (chatbackInput.charAt(chatbackInput.length() - 1)) {
+                    case 'k':
+                    chatbackInput = chatbackInput.replace("k", "000");
+                    break;
+                    case 'm':
+                    chatbackInput = chatbackInput.replace("m", "000000");
+                    break;
+                    case 'b':
+                    chatbackInput = chatbackInput.replace("b", "000000000");
+                    break;
+                }
                 int i1 = 0;
                 try {
                     i1 = Integer.parseInt(chatbackInput);
                 } catch (Exception ignored) {
+                    long i2 = Long.parseLong(chatbackInput);
+                    if (i2 > Integer.MAX_VALUE) {
+                        i1 = Integer.MAX_VALUE;
+                    }
                 }
                 out.writeOp(208);
                 out.write32(i1);
