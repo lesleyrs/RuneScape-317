@@ -13,7 +13,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Enter to login, Escape to go back to main screen
 - Left click compass to make the camera reset/face north
 
-More to come...
+I'm trying to keep this as close to the original client as possible by only adding simple QOL.
 
 ## Issues (inherited from Danes client)
 - Swapping out deprecated Applet brings some issues with it:
