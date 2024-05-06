@@ -5,7 +5,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 ## Quality of life features added:
 - No deprecation or warnings, tab key fixed by disabling JComponents focus traversal keys
 - Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using localhost instead of 127.0.0.1
-- Fix findcachedir home directory path to actually work, still defaults to C:/ on Windows
+- Fix findcachedir home directory path to actually work, still defaults to `c:/` drive on Windows
 - Added moparscape/silabsoft-like server IP login field, uses original Jagex RSA keys by default: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html, leave server IP empty for localhost
 - Escape closes interfaces
 - Hold mousewheel to rotate camera
