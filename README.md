@@ -3,7 +3,8 @@
 Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs317.rar).
 
 ## Quality of life features added:
-- No deprecation or warnings
+- No deprecation or warnings and fixed new window related issues after Applet got replaced:
+  - Fixed Linux white line at bottom of window, fixed WSL2 mouse offset, don't consume tab key by disabling focus traversal keys
 - Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using localhost instead of 127.0.0.1
 - Fix findcachedir home directory path to actually work, still defaults to `c:/` drive on Windows
 - Added moparscape/silabsoft-like server IP login field, uses original Jagex RSA keys by default: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html, leave server IP empty for localhost
