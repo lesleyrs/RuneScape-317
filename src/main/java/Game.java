@@ -11009,13 +11009,13 @@ public class Game extends GameShell {
                             server = server.substring(0, server.length() - 1);
                         }
                         if ((key == 9) || (key == 10) || (key == 13)) {
-                            titleLoginField = 0;
                             loginAttempts = 0;
                             login(username, password, false);
 
                             if (ingame) {
                                 return;
                             }
+                            titleLoginField = 0;
                         }
                         if (valid) {
                             server += (char) key;
