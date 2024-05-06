@@ -10902,6 +10902,21 @@ public class Game extends GameShell {
                 titleScreenState = 2;
                 titleLoginField = 0;
             }
+            do {
+                int key = pollKey();
+
+                if (key == -1) {
+                    break;
+                }
+                
+                if ((key == 9) || (key == 10) || (key == 13)) {
+                    loginMessage0 = "";
+                    loginMessage1 = "Enter your username & password.";
+                    titleScreenState = 2;
+                    titleLoginField = 0;
+                }
+            } while (true);
+            return;
         } else {
             if (titleScreenState == 2) {
                 int fieldY = (super.screenHeight / 2) - 40;
@@ -10943,6 +10958,13 @@ public class Game extends GameShell {
                         break;
                     }
 
+                    if (key == 11) {
+                        titleScreenState = 0;
+                        username = "";
+                        password = "";
+                        break;
+                    }
+
                     boolean valid = false;
                     for (int i = 0; i < VALID_CHAT_CHARACTERS.length(); i++) {
                         if (key != VALID_CHAT_CHARACTERS.charAt(i)) {
@@ -10971,6 +10993,12 @@ public class Game extends GameShell {
                         }
                         if ((key == 9) || (key == 10) || (key == 13)) {
                             titleLoginField = 0;
+                            loginAttempts = 0;
+                            login(username, password, false);
+
+                            if (ingame) {
+                                return;
+                            }
                         }
                         if (valid) {
                             password += (char) key;
@@ -10990,6 +11018,20 @@ public class Game extends GameShell {
                 if ((super.mouseClickButton == 1) && (super.mouseClickX >= (x - 75)) && (super.mouseClickX <= (x + 75)) && (super.mouseClickY >= (y - 20)) && (super.mouseClickY <= (y + 20))) {
                     titleScreenState = 0;
                 }
+
+                do {
+                    int key = pollKey();
+
+                    if (key == -1) {
+                        break;
+                    }
+
+                    if (key == 11) {
+                        titleScreenState = 0;
+                        break;
+                    }
+                } while (true);
+                return;
             }
         }
     }

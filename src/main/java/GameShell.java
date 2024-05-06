@@ -51,6 +51,7 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
         graphics = this.getGraphics();
         startThread(this, 1);
         requestFocus();
+        setFocusTraversalKeysEnabled(false);
     }
 
     public void initApplet(int width, int height) {
@@ -332,19 +333,7 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
             value = 0;
         }
 
-        if (code == KeyEvent.VK_ESCAPE) {
-            if (Game.instance.viewportInterfaceID != -1)
-                Game.instance.viewportInterfaceID = -1;
-            if (Game.instance.sidebarInterfaceID != -1) {
-                Game.instance.sidebarInterfaceID = -1;
-                Game.instance.redrawSidebar = true;
-                Game.instance.redrawSideicons = true;
-            }
-            if (Game.instance.chatInterfaceID != -1) {
-                Game.instance.chatInterfaceID = -1;
-                Game.instance.redrawChatback = true;
-            }
-        } else if (code == KeyEvent.VK_LEFT) {
+        if (code == KeyEvent.VK_LEFT) {
             value = 1;
         } else if (code == KeyEvent.VK_RIGHT) {
             value = 2;
@@ -362,6 +351,19 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
             value = 9;
         } else if (code == KeyEvent.VK_ENTER) {
             value = 10;
+        } else if (code == KeyEvent.VK_ESCAPE) {
+            value = 11;
+            if (Game.instance.viewportInterfaceID != -1)
+                Game.instance.viewportInterfaceID = -1;
+            if (Game.instance.sidebarInterfaceID != -1) {
+                Game.instance.sidebarInterfaceID = -1;
+                Game.instance.redrawSidebar = true;
+                Game.instance.redrawSideicons = true;
+            }
+            if (Game.instance.chatInterfaceID != -1) {
+                Game.instance.chatInterfaceID = -1;
+                Game.instance.redrawChatback = true;
+            }
         } else if ((code >= KeyEvent.VK_F1) && (code <= KeyEvent.VK_F12)) {
             value = (1008 + code) - KeyEvent.VK_F1;
         } else if (code == KeyEvent.VK_HOME) {
