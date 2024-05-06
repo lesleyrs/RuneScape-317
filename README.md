@@ -12,3 +12,8 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Left click compass to make the camera reset/face north
 
 More to come...
+
+## Issues (inherited from Danes client)
+- Swapping out deprecated Applet brings some issues with it:
+  - On Linux there is a white line at bottom of the window
+  - WSL2 gui suffers from mouse position being offset
