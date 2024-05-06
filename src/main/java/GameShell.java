@@ -267,6 +267,11 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
             lastMouseClickButton = 1;
             mouseButton = 1;
         }
+
+        if (x >= 551 && x <= 577 && y >= 7 && y <= 40) {
+            Game.instance.orbitCameraYaw = 0;
+            Game.instance.orbitCameraPitch = 120;
+        }
     }
 
     @Override

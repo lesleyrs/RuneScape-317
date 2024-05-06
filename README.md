@@ -9,5 +9,6 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Hold mousewheel to rotate camera
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Enter to login, Escape to go back to main screen
+- Left click compass to make the camera reset/face north
 
 More to come...
