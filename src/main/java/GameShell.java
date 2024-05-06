@@ -415,6 +415,8 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
             action = 9;
         } else if (code == KeyEvent.VK_ENTER) {
             action = 10;
+        } else if (code == KeyEvent.VK_ESCAPE) {
+            action = 11;
         }
 
         if ((action > 0) && (action < 128)) {
