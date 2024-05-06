@@ -268,9 +268,10 @@ public abstract class GameShell extends JComponent implements Runnable, MouseLis
             mouseButton = 1;
         }
 
+        // minimap compass
         if (x >= 551 && x <= 577 && y >= 7 && y <= 40) {
             Game.instance.orbitCameraYaw = 0;
-            Game.instance.orbitCameraPitch = 120;
+            // Game.instance.orbitCameraPitch = 120;
         }
     }
 
