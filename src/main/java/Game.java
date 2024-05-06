@@ -10421,6 +10421,9 @@ public class Game extends GameShell {
             y += 15;
 
             fontBold12.drawStringTaggable("Password: " + StringUtil.toAsterisks(password) + (titleLoginField == 1 & loopCycle % 40 < 20 ? "@yel@|" : ""), (w / 2) - 88, y, 0xffffff, true);
+            y += 15;
+
+            fontBold12.drawStringTaggable("Server IP: " + server + (titleLoginField == 2 & loopCycle % 40 < 20 ? "@yel@|" : ""), (w / 2) - 87, y, 0xffffff, true);
 
             if (!hideButtons) {
                 int x = (w / 2) - 80;
@@ -10993,6 +10996,19 @@ public class Game extends GameShell {
                             password = password.substring(0, password.length() - 1);
                         }
                         if ((key == 9) || (key == 10) || (key == 13)) {
+                            titleLoginField = 2;
+                        }
+                        if (valid) {
+                            password += (char) key;
+                        }
+                        if (password.length() > 20) {
+                            password = password.substring(0, 20);
+                        }
+                    } else if (titleLoginField == 2) {
+                        if ((key == 8) && (server.length() > 0)) {
+                            server = server.substring(0, server.length() - 1);
+                        }
+                        if ((key == 9) || (key == 10) || (key == 13)) {
                             titleLoginField = 0;
                             loginAttempts = 0;
                             login(username, password, false);
@@ -11002,10 +11018,10 @@ public class Game extends GameShell {
                             }
                         }
                         if (valid) {
-                            password += (char) key;
+                            server += (char) key;
                         }
-                        if (password.length() > 20) {
-                            password = password.substring(0, 20);
+                        if (server.length() > 20) {
+                            server = server.substring(0, 20);
                         }
                     }
                 } while (true);
@@ -11027,7 +11043,7 @@ public class Game extends GameShell {
                         break;
                     }
 
-                    if (key == 11) {
+                    if ((key == 11) || (key == 9) || (key == 10) || (key == 13)) {
                         titleScreenState = 0;
                         break;
                     }
