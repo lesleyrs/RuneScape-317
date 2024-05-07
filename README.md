@@ -10,7 +10,12 @@ Merged upstream:
 - Fix findcachedir home directory path to actually work, still defaults to `c:/` drive on Windows
 
 Extra client features:
-- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys by default: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html
+- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys:
+```
+Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789
+Private exponent: 4563042879983685819415859508309337987464904274730456483940553788384065737798175536144539635545496149193181089921240252410947054964044522362195913220892133
+Public exponent: 58778699976184461502525193738213253649000149147835990136706041084440742975821
+```
 - Escape closes interfaces
 - Hold mousewheel to rotate camera
 - Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn TODO: increase viewing distance based on cam zoom + toggleroof cmd?
