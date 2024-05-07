@@ -9,7 +9,8 @@ Merged upstream:
 - Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using localhost instead of 127.0.0.1
 - Fix findcachedir home directory path to actually work, still defaults to `c:/` drive on Windows
 
-- Added moparscape/silabsoft-like server IP login field, uses original Jagex RSA keys by default: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html, leave server IP empty for localhost
+Other:
+- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys by default: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html
 - Escape closes interfaces
 - Hold mousewheel to rotate camera
 - Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn TODO: increase viewing distance based on cam zoom?
