@@ -2,7 +2,6 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -253,21 +252,21 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
         lastMouseClickY = y;
         lastMouseClickTime = System.currentTimeMillis();
 
-        if (SwingUtilities.isMiddleMouseButton(e)) {
+        if (e.getButton() == MouseEvent.BUTTON2) {
             mouseWheelDown = true;
             mouseWheelX = mouseX;
             mouseWheelY = mouseY;
             return;
         }
 
-        if (SwingUtilities.isRightMouseButton(e)) {
+        if (e.getButton() == MouseEvent.BUTTON3) {
             lastMouseClickButton = 2;
             mouseButton = 2;
         } else {
             lastMouseClickButton = 1;
             mouseButton = 1;
 
-            // minimap compass
+            // minimap compass left clicked TODO: are coords exact?
             if (x >= 551 && x <= 577 && y >= 7 && y <= 40) {
                 Game.instance.orbitCameraYaw = 0;
             }
@@ -372,19 +371,68 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
             value = 10;
         } else if (code == KeyEvent.VK_ESCAPE) {
             value = 11;
-            if (Game.instance.viewportInterfaceID != -1)
-                Game.instance.viewportInterfaceID = -1;
-            if (Game.instance.sidebarInterfaceID != -1) {
-                Game.instance.sidebarInterfaceID = -1;
+            if (Game.instance.viewportInterfaceID == -1 && Game.instance.sidebarInterfaceID == -1 && Game.instance.chatInterfaceID == -1) {
                 Game.instance.redrawSidebar = true;
+                Game.instance.selectedTab = 3;
                 Game.instance.redrawSideicons = true;
-            }
-            if (Game.instance.chatInterfaceID != -1) {
-                Game.instance.chatInterfaceID = -1;
-                Game.instance.redrawChatback = true;
+            } else {
+                if (Game.instance.viewportInterfaceID != -1) {
+                    Game.instance.viewportInterfaceID = -1;
+                }
+                if (Game.instance.sidebarInterfaceID != -1) {
+                    Game.instance.sidebarInterfaceID = -1;
+                    Game.instance.redrawSidebar = true;
+                    Game.instance.redrawSideicons = true;
+                }
+                if (Game.instance.chatInterfaceID != -1) {
+                    Game.instance.chatInterfaceID = -1;
+                    Game.instance.redrawChatback = true;
+                }
             }
         } else if ((code >= KeyEvent.VK_F1) && (code <= KeyEvent.VK_F12)) {
             value = (1008 + code) - KeyEvent.VK_F1;
+            Game.instance.redrawSidebar = true;
+
+            switch (code) {
+            case KeyEvent.VK_F1:
+                Game.instance.selectedTab = 4;
+                break;
+            case KeyEvent.VK_F2:
+                Game.instance.selectedTab = 5;
+                break;
+            case KeyEvent.VK_F3:
+                Game.instance.selectedTab = 6;
+                break;
+            case KeyEvent.VK_F4:
+                Game.instance.selectedTab = 0;
+                break;
+            case KeyEvent.VK_F5:
+                Game.instance.selectedTab = 1;
+                break;
+            case KeyEvent.VK_F6:
+                Game.instance.selectedTab = 12;
+                break;
+            case KeyEvent.VK_F7:
+                Game.instance.selectedTab = 10;
+                break;
+            case KeyEvent.VK_F8:
+                Game.instance.selectedTab = 11;
+                break;
+            case KeyEvent.VK_F9:
+                Game.instance.selectedTab = 2;
+                break;
+            case KeyEvent.VK_F10:
+                Game.instance.selectedTab = 13;
+                break;
+            case KeyEvent.VK_F11:
+                Game.instance.selectedTab = 8;
+                break;
+            case KeyEvent.VK_F12:
+                Game.instance.selectedTab = 9;
+                break;
+            }
+
+            Game.instance.redrawSideicons = true;
         } else if (code == KeyEvent.VK_HOME) {
             value = 1000;
         } else if (code == KeyEvent.VK_END) {

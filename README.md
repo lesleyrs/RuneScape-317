@@ -13,7 +13,7 @@ Other:
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys by default: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html
 - Escape closes interfaces
 - Hold mousewheel to rotate camera
-- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn TODO: increase viewing distance based on cam zoom?
+- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn TODO: increase viewing distance based on cam zoom + toggleroof cmd?
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Enter to login, Escape to go back to main screen
 - Left click compass to make the camera reset/face north
