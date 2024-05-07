@@ -326,6 +326,20 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
     }
 
     public void mouseWheelMoved(MouseWheelEvent e) {
+        int notches = e.getWheelRotation();
+        // TODO: don't know where the extra border values are from but it seems about right
+        if (Game.instance.viewportInterfaceID == -1 && mouseX < Scene.viewportRight + 3 && mouseY < Scene.viewportBottom + 6) {
+            if (notches < 0) {
+                if (Game.cameraZoom > 3) {
+                    Game.cameraZoom--;
+                }
+            } else {
+                // 7 is highest value where character shows on screen at max height
+                if (Game.cameraZoom < 7) {
+                    Game.cameraZoom++;
+                }
+            }
+        }
     }
 
     @Override
@@ -377,8 +391,14 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
             value = 1001;
         } else if (code == KeyEvent.VK_PAGE_UP) {
             value = 1002;
+            if (Game.cameraZoom > 3) {
+                Game.cameraZoom--;
+            }
         } else if (code == KeyEvent.VK_PAGE_DOWN) {
             value = 1003;
+            if (Game.cameraZoom < 7) {
+                Game.cameraZoom++;
+            }
         }
 
         if ((value > 0) && (value < 128)) {
