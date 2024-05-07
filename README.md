@@ -6,13 +6,13 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 **Merged upstream**:
 - No deprecation or warnings and fixed new window related issues after Applet got replaced:
   - Fixed white line at bottom of window on Linux, fixed WSL2 mouse offset, don't consume tab key by disabling focus traversal keys
-- Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using localhost instead of 127.0.0.1 or 0.0.0.0
+- Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using an empty string or localhost instead of 127.0.0.1 or 0.0.0.0
 - Fix findcachedir home directory path to actually work, still defaults to c:/ drive on Windows
 
 **Quality of life features**:
 - Escape closes interfaces
 - Hold mousewheel to rotate camera
-- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn TODO: increase viewing distance based on cam zoom + toggleroof cmd?
+- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn **TODO**: increase viewing distance based on cam zoom + toggleroof cmd?
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Enter to login, Escape to go back to main screen
 - Left click compass to make the camera face north
@@ -29,9 +29,14 @@ I added a makefile to easily run the client without an IDE, on Windows you can g
 I'm trying to keep this close to the original client by only adding simple QOL.
 
 > [!NOTE]
+> You can get caches from here: https://archive.openrs2.org/ https://runewiki.org/archive/. 317 cache is not recommended right now as it's one of the less complete ones in terms of models and will crash in Draynor. #318 and #319 are the most complete[^2] pre-fullscreen interfaces but any other revision before #339?[^3] works.
+
+> [!NOTE]
 > Blurry text and a small window on Windows is due to resolution scaling having no effect (125% by default). When running the game you should go to: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale` to fix it. Other ways to get a bigger window is increasing your screen resolution scaling in settings even more or use the built-in magnifier tool if you are on a very high resolution.
 
 > [!NOTE]
 > To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS.
 
 [^1]: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html
+[^2]: https://runewiki.org/archive/cache/packed/missing.txt
+[^3]: https://oldschool.runescape.wiki/w/Update:TzHaar_Fight_Caves
