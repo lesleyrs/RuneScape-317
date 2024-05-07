@@ -39,4 +39,4 @@ I'm trying to keep this close to the original client by only adding simple QOL.
 
 [^1]: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html
 [^2]: https://runewiki.org/archive/cache/packed/missing.txt
-[^3]: https://oldschool.runescape.wiki/w/Update:TzHaar_Fight_Caves
+[^3]: https://runescape.wiki/w/Update:TzHaar_Fight_Caves
