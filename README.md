@@ -5,9 +5,9 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 ## Quality of life features added:
 Merged upstream:
 - No deprecation or warnings and fixed new window related issues after Applet got replaced:
-  - Fixed Linux white line at bottom of window, fixed WSL2 mouse offset, don't consume tab key by disabling focus traversal keys
-- Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using localhost instead of 127.0.0.1
-- Fix findcachedir home directory path to actually work, still defaults to `c:/` drive on Windows
+  - Fixed white line at bottom of window on Linux, fixed WSL2 mouse offset, don't consume tab key by disabling focus traversal keys
+- Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using localhost instead of 127.0.0.1 or 0.0.0.0
+- Fix findcachedir home directory path to actually work, still defaults to c:/ drive on Windows
 
 Extra client features:
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys:
