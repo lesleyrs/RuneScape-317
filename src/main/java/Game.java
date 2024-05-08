@@ -10914,7 +10914,7 @@ public class Game extends GameShell {
                     break;
                 }
                 
-                if ((key == 9) || (key == 10) || (key == 13)) {
+                if ((key == 10) || (key == 13)) {
                     loginMessage0 = "";
                     loginMessage1 = "Enter your username & password.";
                     titleScreenState = 2;
@@ -11009,7 +11009,10 @@ public class Game extends GameShell {
                         if ((key == 8) && (server.length() > 0)) {
                             server = server.substring(0, server.length() - 1);
                         }
-                        if ((key == 9) || (key == 10) || (key == 13)) {
+                        if (key == 9) {
+                            titleLoginField = 0;
+                        }
+                        if ((key == 10) || (key == 13)) {
                             loginAttempts = 0;
                             login(username, password, false);
 
