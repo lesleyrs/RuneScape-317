@@ -10963,7 +10963,7 @@ public class Game extends GameShell {
                         break;
                     }
 
-                    if (key == 11) {
+                    if (key == 27) {
                         titleScreenState = 0;
                         username = "";
                         password = "";
@@ -11044,7 +11044,7 @@ public class Game extends GameShell {
                         break;
                     }
 
-                    if ((key == 11) || (key == 9) || (key == 10) || (key == 13)) {
+                    if ((key == 27) || (key == 9) || (key == 10) || (key == 13)) {
                         titleScreenState = 0;
                         break;
                     }

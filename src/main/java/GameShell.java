@@ -370,7 +370,7 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
         } else if (code == KeyEvent.VK_ENTER) {
             value = 10;
         } else if (code == KeyEvent.VK_ESCAPE) {
-            value = 11;
+            value = 27;
             if (Game.instance.viewportInterfaceID == -1 && Game.instance.sidebarInterfaceID == -1 && Game.instance.chatInterfaceID == -1) {
                 Game.instance.redrawSidebar = true;
                 Game.instance.selectedTab = 3;
