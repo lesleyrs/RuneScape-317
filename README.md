@@ -12,7 +12,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 **Quality of life features**:
 - Escape closes interfaces
 - Hold mousewheel to rotate camera
-- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn, max zoom-in is the original default **TODO**: increase viewing distance based on cam zoom + toggleroof cmd?
+- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn, max zoom-in is the original default **TODO**: increase viewing distance based on cam zoom + toggleroof command?
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Enter to login, Escape to go back to main screen, Tab unlike Enter won't login when reaching last login field
 - Left click compass to make the camera face north
@@ -25,11 +25,10 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 ```
 
 ## Notes
-- I added a makefile to easily run the client without an IDE, on Windows you can get `make` from here by adding the bin directory to `PATH` environment variable https://github.com/skeeto/w64devkit. For editing this way also grab https://github.com/eclipse-jdtls/eclipse.jdt.ls (requires a recent JDK version). I'm trying to keep this close to the original client by only adding simple QOL.
-- You can get caches from here: https://archive.openrs2.org/ https://runewiki.org/archive/. 317 cache is not recommended right now as it's one of the less complete ones in terms of models and will crash the client in Draynor. #318 and #319 are the most complete pre-fullscreen interfaces[^2] but any other revision before #339? works.[^3]
+- I added a makefile to easily run the client without an IDE, on Windows you can get `make` from here https://github.com/skeeto/w64devkit and then adding bin directory to the `PATH` environment variable. For editing this way also grab https://github.com/eclipse-jdtls/eclipse.jdt.ls (requires a recent JDK version and editor with LSP support). I'm trying to keep this close to the original client by only adding simple QOL.
+- You can get caches from here: https://archive.openrs2.org/ https://runewiki.org/archive/. 317 cache is not recommended right now as it's one of the less complete ones in terms of models and will crash the client in Draynor. #318 and #319 are the most complete caches before fullscreen interfaces in #339.[^2]
 - Blurry text and a small window on Windows is due to resolution scaling having no effect (125% by default). When running the game you should go to: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale` to fix it. Other ways to get a bigger window is increasing your screen resolution scaling in settings even more or use the built-in magnifier tool if you are on a very high resolution.
 - To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS.
 
 [^1]: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html
-[^2]: https://runewiki.org/archive/cache/packed/missing.txt
-[^3]: https://www.youtube.com/watch?v=tZlj694lcxA https://oldschool.runescape.wiki/w/Graphical_updates_(historical) https://runescape.wiki/w/RuneTek#History https://runescape.wiki/w/Build_number https://runescape.wiki/w/Game_updates https://oldschool.runescape.wiki/w/Game_updates https://oldschool.runescape.wiki/w/User:Hlwys/Revisions - RS3 game updates page is missing some news posts compared to OSRS wiki
+[^2]: https://runewiki.org/archive/cache/packed/missing.txt https://www.youtube.com/watch?v=tZlj694lcxA https://oldschool.runescape.wiki/w/Graphical_updates_(historical) https://runescape.wiki/w/RuneTek#History https://runescape.wiki/w/Build_number https://runescape.wiki/w/Game_updates https://oldschool.runescape.wiki/w/Game_updates https://oldschool.runescape.wiki/w/User:Hlwys/Revisions - RS3 game updates page is missing some news posts compared to OSRS wiki
