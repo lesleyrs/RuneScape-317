@@ -6174,10 +6174,7 @@ public class Game extends GameShell {
                 try {
                     i1 = Integer.parseInt(chatbackInput);
                 } catch (Exception ignored) {
-                    long i2 = Long.parseLong(chatbackInput);
-                    if (i2 > Integer.MAX_VALUE) {
-                        i1 = Integer.MAX_VALUE;
-                    }
+                    i1 = Integer.MAX_VALUE;
                 }
                 out.writeOp(208);
                 out.write32(i1);
