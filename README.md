@@ -8,7 +8,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
   - Fixed white line at bottom of window on Linux, fixed WSL2 mouse offset, don't consume tab key by disabling focus traversal keys
 - Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using an empty string or localhost instead of 127.0.0.1 or 0.0.0.0
 - Fix findcachedir home directory path to actually work, still defaults to c:/ drive on Windows
-- Require JDK 21 to build, this could be lowered to 11 but maven is dropping 8 eventually
+- Require JDK 21 to build, this could be lowered but maven warns about dropping 8 already
 
 **Quality of life features**:
 - Escape closes interfaces
