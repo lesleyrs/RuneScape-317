@@ -272,7 +272,7 @@ public class Game extends GameShell {
     public Image8 imageRedstone2hv;
     public Image24 imageMapmarker0;
     public Image24 imageMapmarker1;
-    public boolean jaggrabEnabled = true; // original value: false
+    public boolean jaggrabEnabled = true; // NOTE: original value: false, this is less efficient?
     public int lastWaveID = -1;
     public int weightCarried;
     public MouseRecorder mouseRecorder;

@@ -960,7 +960,7 @@ public class Draw3D {
             rgb = palette[color0 >> 8];
             color0 += colorStep;
             rgb = ((((rgb & 0xff00ff) * invAlpha) >> 8) & 0xff00ff) + ((((rgb & 0xff00) * invAlpha) >> 8) & 0xff00);
-            // If you want to fix the lines in transparent models like ghostly or bank booths, change dst[offset++] to
+            // NOTE: If you want to fix the lines in transparent models like ghostly or bank booths, change dst[offset++] to
             // dst[offset] and on the next line below put offset++
             dst[offset++] = rgb + ((((dst[offset] & 0xff00ff) * alpha) >> 8) & 0xff00ff) + ((((dst[offset] & 0xff00) * alpha) >> 8) & 0xff00);
         } while (--length > 0);
@@ -1299,7 +1299,7 @@ public class Draw3D {
         rgb = ((((rgb & 0xff00ff) * invAlpha) >> 8) & 0xff00ff) + ((((rgb & 0xff00) * invAlpha) >> 8) & 0xff00);
 
         while (--length >= 0) {
-            // to fix lines in transparent things: change index operand to 'offset' and add 'offset++' below each line
+            // NOTE: to fix lines in transparent things: change index operand to 'offset' and add 'offset++' below each line
             dst[offset++] = rgb + ((((dst[offset] & 0xff00ff) * alpha) >> 8) & 0xff00ff) + ((((dst[offset] & 0xff00) * alpha) >> 8) & 0xff00);
             dst[offset++] = rgb + ((((dst[offset] & 0xff00ff) * alpha) >> 8) & 0xff00ff) + ((((dst[offset] & 0xff00) * alpha) >> 8) & 0xff00);
             dst[offset++] = rgb + ((((dst[offset] & 0xff00ff) * alpha) >> 8) & 0xff00ff) + ((((dst[offset] & 0xff00) * alpha) >> 8) & 0xff00);
