@@ -13,7 +13,8 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 **Quality of life features**:
 - Escape closes interfaces
 - Hold mousewheel to rotate camera
-- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn, max zoom-in is the original default **TODO**: increase viewing distance based on cam zoom + toggleroof command?
+- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn, zoomed in is the original distance **TODO**: increase viewing distance based on cam zoom
+- ::toggleroofs command, with roofs being turned off by default
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Enter to login, Escape to go back to main screen, Tab unlike Enter won't login when reaching last login field
 - Left click compass to make the camera face north

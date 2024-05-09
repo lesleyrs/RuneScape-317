@@ -20,6 +20,7 @@ import java.util.zip.CRC32;
 
 public class Game extends GameShell {
 
+    public static boolean hideRoofs = true; // NOTE: original value would've been false
     public static final int minZoom = 3;
     // NOTE: 7 is highest value where character shows on screen at max height
     public static final int maxZoom = 7;
@@ -6025,6 +6026,10 @@ public class Game extends GameShell {
                 }
             }
 
+            if (chatTyped.equals("::toggleroofs")) {
+                hideRoofs = !hideRoofs;
+            }
+
             if (chatTyped.startsWith("::")) {
                 out.writeOp(103);
                 out.write8(chatTyped.length() - 1);
@@ -9629,6 +9634,9 @@ public class Game extends GameShell {
     }
 
     public int getTopLevel() {
+        if (hideRoofs) {
+            return currentLevel;
+        }
         int top = 3;
 
         if (cameraPitch < 310) {
@@ -9730,6 +9738,10 @@ public class Game extends GameShell {
     }
 
     public int getTopLevelCutscene() {
+        if (hideRoofs) {
+            return currentLevel;
+        }
+
         int y = getHeightmapY(currentLevel, cameraX, cameraZ);
 
         if (((y - cameraY) < 800) && ((levelTileFlags[currentLevel][cameraX >> 7][cameraZ >> 7] & 4) != 0)) {
