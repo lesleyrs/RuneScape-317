@@ -321,10 +321,15 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
         mouseY = y;
     }
 
-    void mouseWheelDragged(int param1, int param2) {
+    public void mouseWheelDragged(int i, int j) {
+        if (!mouseWheelDown)
+            return;
+        Game.instance.orbitCameraYawVelocity += i * 3;
+        Game.instance.orbitCameraPitchVelocity += (j << 1);
     }
 
     public void mouseWheelMoved(MouseWheelEvent e) {
+        // TODO: why is there no event when scrolling 1 notch in opposite direction?
         int notches = e.getWheelRotation();
         if (!handleInterfaceScrolling(e, notches)) {
         // TODO: don't know where the extra border values are from but it seems about right
@@ -345,14 +350,8 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
     public boolean handleInterfaceScrolling(MouseWheelEvent e, int notches) {
         if (mouseX > 0 && mouseY > 346 && mouseX < 516 && mouseY < 505 && Game.instance.chatInterfaceID == -1) {
             if (notches < 0) {
-                if (Game.instance.chatInterface.scrollPosition >= 1) {
-                    Game.instance.chatScrollOffset = Game.instance.chatScrollOffset + 30;
-                    Game.instance.redrawChatback = true;
-                }
-            // TODO: is this needed?
-            // } else if (Game.instance.chatScrollOffset < 1) {
-            //     Game.instance.chatScrollOffset = 0;
-            //     Game.instance.redrawChatback = true;
+                Game.instance.chatScrollOffset = Game.instance.chatScrollOffset + 30;
+                Game.instance.redrawChatback = true;
             } else {
                 Game.instance.chatScrollOffset = Game.instance.chatScrollOffset - 30;
                 Game.instance.redrawChatback = true;
@@ -383,28 +382,47 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
                     }
                 }
                 if (mouseX > offsetX + positionX && mouseY > offsetY + positionY && mouseX < offsetX + positionX + width && mouseY < offsetY + positionY + height) {
-                    IfType.instances[tab.childID[childID2]].scrollPosition += notches * 30;
-                    Game.instance.redrawSidebar = true;
-                    return true;
+                    int newScrollPosition = IfType.instances[tab.childID[childID2]].scrollPosition + notches * 30;
+                    if (notches < 0) {
+                        if (newScrollPosition + IfType.instances[tab.childID[childID2]].scrollPosition > 0) {
+                            IfType.instances[tab.childID[childID2]].scrollPosition = newScrollPosition;
+                            Game.instance.redrawSidebar = true;
+                            return true;
+                        } else {
+                            IfType.instances[tab.childID[childID2]].scrollPosition = 0;
+                            Game.instance.redrawSidebar = true;
+                            return true;
+                        }
+                    } else {
+                        if (newScrollPosition <= IfType.instances[tab.childID[childID2]].scrollableHeight - IfType.instances[tab.childID[childID2]].height) {
+                            IfType.instances[tab.childID[childID2]].scrollPosition = newScrollPosition;
+                            Game.instance.redrawSidebar = true;
+                            return true;
+                        } else {
+                            IfType.instances[tab.childID[childID2]].scrollPosition = IfType.instances[tab.childID[childID2]].scrollableHeight - IfType.instances[tab.childID[childID2]].height;
+                            Game.instance.redrawSidebar = true;
+                            return true;
+                        }
+                    }
                 }
             }
             /* Main interface scrolling */
             if (Game.instance.viewportInterfaceID != -1) {
-                IfType iftype = IfType.instances[Game.instance.viewportInterfaceID];
+                IfType iface = IfType.instances[Game.instance.viewportInterfaceID];
                 offsetX = 4;
                 offsetY = 4;
-                for (int idx = 0; idx < iftype.childID.length; idx++) {
-                    if (IfType.instances[iftype.childID[idx]].scrollableHeight > 0) {
+                for (int idx = 0; idx < iface.childID.length; idx++) {
+                    if (IfType.instances[iface.childID[idx]].scrollableHeight > 0) {
                         childID2 = idx;
-                        positionX = iftype.childX[idx];
-                        positionY = iftype.childY[idx];
-                        width = IfType.instances[iftype.childID[idx]].width;
-                        height = IfType.instances[iftype.childID[idx]].height;
+                        positionX = iface.childX[idx];
+                        positionY = iface.childY[idx];
+                        width = IfType.instances[iface.childID[idx]].width;
+                        height = IfType.instances[iface.childID[idx]].height;
                         break;
                     }
                 }
                 if (mouseX > offsetX + positionX && mouseY > offsetY + positionY && mouseX < offsetX + positionX + width && mouseY < offsetY + positionY + height) {
-                    IfType.instances[iftype.childID[childID2]].scrollPosition += notches * 30;
+                    IfType.instances[iface.childID[childID2]].scrollPosition += notches * 30;
                     return true;
                 }
             }
