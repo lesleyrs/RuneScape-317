@@ -40,6 +40,8 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
     public boolean mouseWheelDown;
     public int mouseWheelX;
     public int mouseWheelY;
+    // NOTE: 7 is highest value where character shows on screen at max height
+    public int maxZoom;
 
     public void init(int width, int height) {
         screenWidth = width;
@@ -333,8 +335,7 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
                     Game.cameraZoom--;
                 }
             } else {
-                // 7 is highest value where character shows on screen at max height
-                if (Game.cameraZoom < 7) {
+                if (Game.cameraZoom < maxZoom) {
                     Game.cameraZoom++;
                 }
             }
@@ -444,7 +445,7 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
             }
         } else if (code == KeyEvent.VK_PAGE_DOWN) {
             value = 1003;
-            if (Game.cameraZoom < 7) {
+            if (Game.cameraZoom < maxZoom) {
                 Game.cameraZoom++;
             }
         }
@@ -489,7 +490,7 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
         } else if (code == KeyEvent.VK_ENTER) {
             action = 10;
         } else if (code == KeyEvent.VK_ESCAPE) {
-            action = 11;
+            action = 27;
         }
 
         if ((action > 0) && (action < 128)) {
