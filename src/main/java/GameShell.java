@@ -327,7 +327,7 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
     public void mouseWheelMoved(MouseWheelEvent e) {
         int notches = e.getWheelRotation();
         // TODO: don't know where the extra border values are from but it seems about right
-        if (Game.instance.viewportInterfaceID == -1 && mouseX < Scene.viewportRight + 3 && mouseY < Scene.viewportBottom + 6) {
+        if (Game.instance.ingame && Game.instance.viewportInterfaceID == -1 && mouseX < Scene.viewportRight + 3 && mouseY < Scene.viewportBottom + 6) {
             if (notches < 0) {
                 if (Game.cameraZoom > 3) {
                     Game.cameraZoom--;
