@@ -40,8 +40,6 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
     public boolean mouseWheelDown;
     public int mouseWheelX;
     public int mouseWheelY;
-    // NOTE: 7 is highest value where character shows on screen at max height
-    public int maxZoom;
 
     public void init(int width, int height) {
         screenWidth = width;
@@ -331,11 +329,11 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
         // TODO: don't know where the extra border values are from but it seems about right
         if (Game.instance.ingame && Game.instance.viewportInterfaceID == -1 && mouseX < Scene.viewportRight + 3 && mouseY < Scene.viewportBottom + 6) {
             if (notches < 0) {
-                if (Game.cameraZoom > 3) {
+                if (Game.cameraZoom > Game.minZoom) {
                     Game.cameraZoom--;
                 }
             } else {
-                if (Game.cameraZoom < maxZoom) {
+                if (Game.cameraZoom < Game.maxZoom) {
                     Game.cameraZoom++;
                 }
             }
@@ -440,12 +438,12 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
             value = 1001;
         } else if (code == KeyEvent.VK_PAGE_UP) {
             value = 1002;
-            if (Game.cameraZoom > 3) {
+            if (Game.cameraZoom > Game.minZoom) {
                 Game.cameraZoom--;
             }
         } else if (code == KeyEvent.VK_PAGE_DOWN) {
             value = 1003;
-            if (Game.cameraZoom < maxZoom) {
+            if (Game.cameraZoom < Game.maxZoom) {
                 Game.cameraZoom++;
             }
         }
