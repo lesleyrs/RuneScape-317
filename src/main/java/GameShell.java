@@ -465,18 +465,7 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
                 Game.instance.selectedTab = 3;
                 Game.instance.redrawSideicons = true;
             } else {
-                if (Game.instance.viewportInterfaceID != -1) {
-                    Game.instance.viewportInterfaceID = -1;
-                }
-                if (Game.instance.sidebarInterfaceID != -1) {
-                    Game.instance.sidebarInterfaceID = -1;
-                    Game.instance.redrawSidebar = true;
-                    Game.instance.redrawSideicons = true;
-                }
-                if (Game.instance.chatInterfaceID != -1) {
-                    Game.instance.chatInterfaceID = -1;
-                    Game.instance.redrawChatback = true;
-                }
+                Game.instance.closeInterfaces();
             }
         } else if ((code >= KeyEvent.VK_F1) && (code <= KeyEvent.VK_F12)) {
             value = (1008 + code) - KeyEvent.VK_F1;

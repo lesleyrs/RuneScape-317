@@ -4,7 +4,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 
 ## Client changes:
 **Merged upstream**:
-- No deprecation or warnings and fixed new window related issues after Applet got replaced:
+- No deprecation or warnings with Java 21 and fixed new window related issues after Applet got replaced:
   - Fixed white line at bottom of window on Linux, fixed WSL2 mouse offset, don't consume tab key by disabling focus traversal keys
 - Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using an empty string or localhost instead of 127.0.0.1 or 0.0.0.0
 - Fix findcachedir home directory path to actually work, still defaults to c:/ drive on Windows
@@ -16,7 +16,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Left click compass to make the camera face north
 - Hold mousewheel to rotate camera
-- Scroll mousewheel to scroll interfaces or zoom camera (zoomed in is the original distance) **TODO**: increase viewing distance based on cam zoom
+- Scroll mousewheel to scroll interfaces or zoom camera (zoom in for original distance)
 - ::toggleroofs command, with roofs being turned off by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys[^1]:
@@ -25,6 +25,13 @@ Modulus: 71629005252297980327618167912305272963293132912323242902378492635012082
 Private exponent: 4563042879983685819415859508309337987464904274730456483940553788384065737798175536144539635545496149193181089921240252410947054964044522362195913220892133
 Public exponent: 58778699976184461502525193738213253649000149147835990136706041084440742975821
 ```
+
+**TODO**:
+- Space to continue dialogue and number keys to select dialogue options - https://rune-server.org/runescape-development/rs2-client/snippets/657143-spacebar-continue-dialogue.html
+- Shift-drop items - check `sortMenuOptions`?
+- Increase viewing distance based on camera zoom
+- Tab to quick-reply private messages
+- Music and sounds
 
 ## Notes
 - I added a makefile to easily run the client without an IDE, on Windows you can get `make` from here https://github.com/skeeto/w64devkit and then adding bin directory to the `PATH` environment variable. For editing this way also grab https://github.com/eclipse-jdtls/eclipse.jdt.ls (requires a recent JDK version and editor with LSP support). I'm trying to keep this close to the original client by only adding simple QOL.
