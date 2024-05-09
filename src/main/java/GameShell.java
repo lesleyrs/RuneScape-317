@@ -326,18 +326,90 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
 
     public void mouseWheelMoved(MouseWheelEvent e) {
         int notches = e.getWheelRotation();
+        if (!handleInterfaceScrolling(e, notches)) {
         // TODO: don't know where the extra border values are from but it seems about right
-        if (Game.instance.ingame && Game.instance.viewportInterfaceID == -1 && mouseX < Scene.viewportRight + 3 && mouseY < Scene.viewportBottom + 6) {
-            if (notches < 0) {
-                if (Game.cameraZoom > Game.minZoom) {
-                    Game.cameraZoom--;
-                }
-            } else {
-                if (Game.cameraZoom < Game.maxZoom) {
-                    Game.cameraZoom++;
+            if (Game.instance.ingame && Game.instance.viewportInterfaceID == -1 && mouseX < Scene.viewportRight + 3 && mouseY < Scene.viewportBottom + 6) {
+                if (notches < 0) {
+                    if (Game.cameraZoom > Game.minZoom) {
+                        Game.cameraZoom--;
+                    }
+                } else {
+                    if (Game.cameraZoom < Game.maxZoom) {
+                        Game.cameraZoom++;
+                    }
                 }
             }
         }
+    }
+
+    public boolean handleInterfaceScrolling(MouseWheelEvent e, int notches) {
+        if (mouseX > 0 && mouseY > 346 && mouseX < 516 && mouseY < 505 && Game.instance.chatInterfaceID == -1) {
+            if (notches < 0) {
+                if (Game.instance.chatInterface.scrollPosition >= 1) {
+                    Game.instance.chatScrollOffset = Game.instance.chatScrollOffset + 30;
+                    Game.instance.redrawChatback = true;
+                }
+            // TODO: is this needed?
+            // } else if (Game.instance.chatScrollOffset < 1) {
+            //     Game.instance.chatScrollOffset = 0;
+            //     Game.instance.redrawChatback = true;
+            } else {
+                Game.instance.chatScrollOffset = Game.instance.chatScrollOffset - 30;
+                Game.instance.redrawChatback = true;
+            }
+            return true;
+        } else {
+            int positionX = 0;
+            int positionY = 0;
+            int width = 0;
+            int height = 0;
+            int offsetX = 0;
+            int offsetY = 0;
+            int childID2 = 0;
+            /* Tab interface scrolling */
+            int tabInterfaceID = Game.instance.tabInterfaceID[Game.instance.selectedTab];
+            if (tabInterfaceID != -1) {
+                IfType tab = IfType.instances[tabInterfaceID];
+                offsetX = 765 - 218;
+                offsetY = 503 - 298;
+                for (int idx = 0; idx < tab.childID.length; idx++) {
+                    if (IfType.instances[tab.childID[idx]].scrollableHeight > 0) {
+                        childID2 = idx;
+                        positionX = tab.childX[idx];
+                        positionY = tab.childY[idx];
+                        width = IfType.instances[tab.childID[idx]].width;
+                        height = IfType.instances[tab.childID[idx]].height;
+                        break;
+                    }
+                }
+                if (mouseX > offsetX + positionX && mouseY > offsetY + positionY && mouseX < offsetX + positionX + width && mouseY < offsetY + positionY + height) {
+                    IfType.instances[tab.childID[childID2]].scrollPosition += notches * 30;
+                    Game.instance.redrawSidebar = true;
+                    return true;
+                }
+            }
+            /* Main interface scrolling */
+            if (Game.instance.viewportInterfaceID != -1) {
+                IfType iftype = IfType.instances[Game.instance.viewportInterfaceID];
+                offsetX = 4;
+                offsetY = 4;
+                for (int idx = 0; idx < iftype.childID.length; idx++) {
+                    if (IfType.instances[iftype.childID[idx]].scrollableHeight > 0) {
+                        childID2 = idx;
+                        positionX = iftype.childX[idx];
+                        positionY = iftype.childY[idx];
+                        width = IfType.instances[iftype.childID[idx]].width;
+                        height = IfType.instances[iftype.childID[idx]].height;
+                        break;
+                    }
+                }
+                if (mouseX > offsetX + positionX && mouseY > offsetY + positionY && mouseX < offsetX + positionX + width && mouseY < offsetY + positionY + height) {
+                    IfType.instances[iftype.childID[childID2]].scrollPosition += notches * 30;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -438,14 +510,8 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
             value = 1001;
         } else if (code == KeyEvent.VK_PAGE_UP) {
             value = 1002;
-            if (Game.cameraZoom > Game.minZoom) {
-                Game.cameraZoom--;
-            }
         } else if (code == KeyEvent.VK_PAGE_DOWN) {
             value = 1003;
-            if (Game.cameraZoom < Game.maxZoom) {
-                Game.cameraZoom++;
-            }
         }
 
         if ((value > 0) && (value < 128)) {

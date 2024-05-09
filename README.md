@@ -11,14 +11,14 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Require JDK 21 to build, this could be lowered but maven warns about dropping 8 already
 
 **Quality of life features**:
+- Enter to login, Escape to go back to main screen, Tab will move to username field instead of login
 - Escape closes interfaces
-- Hold mousewheel to rotate camera
-- Added camera zoom with either mousewheel scroll or numpad PgUp/PgDn, zoomed in is the original distance **TODO**: increase viewing distance based on cam zoom
-- ::toggleroofs command, with roofs being turned off by default
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
-- Enter to login, Escape to go back to main screen, Tab unlike Enter won't login when reaching last login field
 - Left click compass to make the camera face north
-- Added fkeys for switching tabs, defaults past f4 are arbitrary but should be good
+- Hold mousewheel to rotate camera
+- Scroll mousewheel to scroll interfaces or zoom camera (zoomed in is the original distance) **TODO**: increase viewing distance based on cam zoom
+- ::toggleroofs command, with roofs being turned off by default
+- Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys[^1]:
 ```
 Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789
