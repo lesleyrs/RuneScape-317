@@ -28,9 +28,9 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 
 **TODO**:
 - Space to continue dialogue and number keys to select dialogue options - https://rune-server.org/runescape-development/rs2-client/snippets/657143-spacebar-continue-dialogue.html
-- Shift-drop items - check `sortMenuOptions`?
+- Tab to reply to last private message and right click reply
+- Shift-drop items - check `sortMenuOptions`? Not sure if this is smart without dropped item value warnings, use AHK otherwise https://github.com/AutoHotkey/AutoHotkey
 - Increase viewing distance based on camera zoom
-- Tab to quick-reply private messages
 - Music and sounds
 
 ## Notes
