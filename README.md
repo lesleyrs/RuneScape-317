@@ -16,7 +16,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Left click compass to make the camera face north
 - Hold mousewheel to rotate camera
-- Scroll mousewheel to scroll interfaces or zoom camera (zoom in for original distance)
+- Scroll mousewheel to scroll interfaces or zoom camera, zoomed out by default
 - ::toggleroofs command, with roofs being turned off by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses Jagex's RSA key[^1]:
@@ -30,13 +30,12 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 - Space to continue dialogue and number keys to select dialogue options - https://rune-server.org/runescape-development/rs2-client/snippets/657143-spacebar-continue-dialogue.html
 - Tab to reply to last private message and right click reply
 - Shift-drop items - check `sortMenuOptions`? Not sure if this is smart without dropped item value warnings, use AHK otherwise https://github.com/AutoHotkey/AutoHotkey
-- Increase viewing distance based on camera zoom
 - Music and sounds
 
 ## Notes
 - Dane's client doesn't exactly replicate the original clients behaviour with errors. It has some checks to avoid them when the original would get a T2 error, but also the opposite way around. Test with the unedited 317 client sometimes to make sure your server is compatible. So far I've restored the T2 crash on bank space limit being exceeded with server packet `53`.
 - I added a makefile to easily run the client without an IDE, on Windows you can get `make` from here https://github.com/skeeto/w64devkit and then adding bin directory to the `PATH` environment variable. For editing this way also grab https://github.com/eclipse-jdtls/eclipse.jdt.ls (requires a recent JDK version and editor with LSP support). I'm trying to keep this close to the original client by only adding simple QOL.
-- You can get caches from here: https://archive.openrs2.org/ https://runewiki.org/archive/. 317 cache is not recommended right now as it's one of the less complete ones in terms of models and will crash the client in Draynor. #318 and #319 are the most complete caches before fullscreen interfaces in #339.[^2] **TODO**: check if 336 cache gives issues with headicons (not sure if caused by new prayers in #333 or fight pits skull #336), if yes then #332 will be latest compatible cache.
+- You can get caches from here: https://archive.openrs2.org/ https://runewiki.org/archive/. 317 cache is not recommended right now as it's one of the less complete ones in terms of models and will crash the client in Draynor. #318 and #319 are the most complete caches before fullscreen interfaces in #339.[^2] **TODO**: check if 333 cache gives issues with headicons on a correct server, if yes then #332 will be latest compatible cache.
 - Blurry text and a small window on Windows is due to resolution scaling having no effect (125% by default). When running the game you should go to: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale` to fix it. Other ways to get a bigger window is increasing your screen resolution scaling in settings even more or use the built-in magnifier tool if you are on a very high resolution.
 - To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS.
 - Added NOTE and TODO markers in the source for things to look at
