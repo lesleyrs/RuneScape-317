@@ -329,7 +329,6 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
     }
 
     public void mouseWheelMoved(MouseWheelEvent e) {
-        // TODO: why is there no event when scrolling 1 notch in opposite direction?
         int notches = e.getWheelRotation();
         if (!handleInterfaceScrolling(e, notches)) {
         // TODO: don't know where the extra border values are from but it seems about right
