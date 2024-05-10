@@ -16,8 +16,8 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Ability to use k/m/b for entering amounts, and allow entering over integer max
 - Left click compass to make the camera face north
 - Hold mousewheel to rotate camera
-- Scroll mousewheel to scroll interfaces or zoom camera, zoomed out by default
-- ::toggleroofs command, with roofs being turned off by default
+- Scroll mousewheel to scroll interfaces or zoom camera, `cameraZoom` set to `maxZoom` by default
+- ::toggleroofs command, with `hideRoofs` being `true` by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses Jagex's RSA key[^1]:
 ```
