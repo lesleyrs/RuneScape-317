@@ -4,16 +4,17 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 
 ## Client changes:
 **Merged upstream**:
-- No deprecation or warnings with Java 21 and fixed new window related issues after Applet got replaced:
-  - Fixed white line at bottom of window on Linux, fixed WSL2 mouse offset, don't consume tab key by disabling focus traversal keys
-- Allow connecting to local WSL2 servers from Windows by preferring IPv6 and using an empty string or localhost instead of 127.0.0.1 or 0.0.0.0
-- Fix findcachedir home directory path to actually work, still defaults to c:/ drive on Windows
+- No deprecation or warnings with Java 21 and instead of Applet being replaced by JComponent use Canvas instead:
+  - Fixed white line at bottom of window on Linux, fixed WSL2 mouse being offset
+- Don't consume tab key with `setFocusTraversalKeysEnabled(false);`, this fixes dead code for title screen navigation
+- Allow connecting to local WSL2 servers from Windows with `System.setProperty("java.net.preferIPv6Addresses", "true");` and using an empty string or localhost instead of 127.0.0.1 or 0.0.0.0
+- Fix `findcachedir()` home directory path to actually work with `System.getProperty("user.home") + "/"`, still defaults to c:/ drive on Windows
 - Require JDK 21 to build, this could be lowered but maven warns about dropping 8 already
 
 **Quality of life features**:
 - Enter to login, Escape to go back to main screen, Tab will move to username field instead of login
 - Escape closes interfaces
-- Ability to use k/m/b for entering amounts, and allow entering over integer max
+- Ability to use k/m/b for entering amounts, and allow entering over integer maximum
 - Left click compass to make the camera face north
 - Hold mousewheel to rotate camera
 - Scroll mousewheel to scroll interfaces or zoom camera, `cameraZoom` set to `maxZoom` by default
@@ -29,7 +30,7 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 **TODO**:
 - Space to continue dialogue and number keys to select dialogue options - https://rune-server.org/runescape-development/rs2-client/snippets/657143-spacebar-continue-dialogue.html
 - Tab to reply to last private message and right click reply
-- Shift-drop items - check `sortMenuOptions`? Not sure if this is smart without dropped item value warnings, use AHK otherwise https://github.com/AutoHotkey/AutoHotkey
+- Shift-drop items - check `sortMenuOptions`? Not sure if this is smart without dropped item value warnings, use `AHK` otherwise https://github.com/AutoHotkey/AutoHotkey
 - Music and sounds
 
 ## Notes
