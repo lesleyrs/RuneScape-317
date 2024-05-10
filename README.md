@@ -19,7 +19,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Scroll mousewheel to scroll interfaces or zoom camera (zoom in for original distance)
 - ::toggleroofs command, with roofs being turned off by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good
-- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses original Jagex RSA keys[^1]:
+- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses Jagex's RSA key[^1]:
 ```
 Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789
 Private exponent: 4563042879983685819415859508309337987464904274730456483940553788384065737798175536144539635545496149193181089921240252410947054964044522362195913220892133
