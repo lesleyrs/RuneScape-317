@@ -12427,12 +12427,8 @@ public class Game extends GameShell {
                 objCount = in.read32ME();
             }
 
-            if (slot >= iface.inventorySlotObjID.length) {
-                in.readU16LEA();
-            } else {
-                iface.inventorySlotObjID[slot] = in.readU16LEA();
-                iface.inventorySlotObjCount[slot] = objCount;
-            }
+            iface.inventorySlotObjID[slot] = in.readU16LEA();
+            iface.inventorySlotObjCount[slot] = objCount;
         }
 
         // clear remaining slots
