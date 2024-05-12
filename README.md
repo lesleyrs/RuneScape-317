@@ -12,6 +12,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Require JDK 21 to build, this could be lowered but maven warns about dropping 8 already
 
 **Quality of life features**:
+- Run client without passing arguments for highmem/members
 - Enter to login, Escape to go back to main screen, Tab will move to username field instead of login
 - Escape closes interfaces
 - Ability to use k/m/b for entering amounts, and allow entering over integer maximum

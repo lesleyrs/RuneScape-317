@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 public class Signlink implements Runnable {
 
     public static final RandomAccessFile[] cache_idx = new RandomAccessFile[5];
+    public static final int clientversion = 317;
     public static int uid;
     public static int storeid = 32;
     public static RandomAccessFile cache_dat = null;

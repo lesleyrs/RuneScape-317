@@ -105,35 +105,51 @@ public class Game extends GameShell {
 
     public static void main(String[] args) throws UnknownHostException {
         System.setProperty("java.net.preferIPv6Addresses", "true");
-        System.out.println("RS2 user client - release #" + 317);
+        System.out.println("RS2 user client - release #" + Signlink.clientversion);
 
-        if (args.length != 5) {
+        try {
+            if (args.length > 0) {
+                nodeID = Integer.parseInt(args[0]);
+            }
+
+            if (args.length > 1) {
+                portOffset = Integer.parseInt(args[1]);
+            }
+
+            if (args.length > 2) {
+                if (args[2].equals("lowmem")) {
+                    setLowmem();
+                } else if (args[2].equals("highmem")) {
+                    setHighmem();
+                } else {
+                    System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid");
+                    return;
+                }
+            } else {
+                setHighmem();
+            }
+
+            if (args.length > 3) {
+                if (args[3].equals("free")) {
+                    members = false;
+                } else if (args[3].equals("members")) {
+                    members = true;
+                } else {
+                    System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid");
+                    return;
+                }
+            } else {
+                members = true;
+            }
+
+            if (args.length > 4) {
+                Signlink.storeid = Integer.parseInt(args[4]);
+            }
+        } catch (NumberFormatException e) {
             System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid");
             return;
         }
 
-        nodeID = Integer.parseInt(args[0]);
-        portOffset = Integer.parseInt(args[1]);
-
-        if (args[2].equals("lowmem")) {
-            setLowmem();
-        } else if (args[2].equals("highmem")) {
-            setHighmem();
-        } else {
-            System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid");
-            return;
-        }
-
-        if (args[3].equals("free")) {
-            members = false;
-        } else if (args[3].equals("members")) {
-            members = true;
-        } else {
-            System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid");
-            return;
-        }
-
-        Signlink.storeid = Integer.parseInt(args[4]);
         Signlink.startpriv();
 
         instance = new Game();
@@ -760,7 +776,7 @@ public class Game extends GameShell {
             Model.init(ondemand.getFileCount(0), ondemand);
 
             if (!lowmem) {
-                song = 7;
+                song = 0;
 
                 try {
                     song = Integer.parseInt(getParameter("music"));
@@ -1344,7 +1360,7 @@ public class Game extends GameShell {
             drawProgress(20, "Connecting to web server");
 
             try {
-                DataInputStream in = openURL("crc" + (int) (Math.random() * 99999999D) + "-" + 317);
+                DataInputStream in = openURL("crc" + (int) (Math.random() * 99999999D) + "-" + Signlink.clientversion);
                 Buffer buffer = new Buffer(new byte[40]);
                 in.readFully(buffer.data, 0, 40);
                 in.close();
@@ -7034,7 +7050,7 @@ public class Game extends GameShell {
                 login.write8(reconnect ? 18 : 16);
                 login.write8(out.position + 36 + 1 + 1 + 2);
                 login.write8(255);
-                login.write16(317);
+                login.write16(Signlink.clientversion);
                 login.write8(lowmem ? 1 : 0);
 
                 for (int archive = 0; archive < 9; archive++) {
