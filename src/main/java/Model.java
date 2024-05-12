@@ -1841,7 +1841,7 @@ public class Model extends Entity {
         int maxZ = midZ + radiusCosEyePitch;
 
         // early z testing
-        // NOTE midZ can be increased to render further objects for use with higher maxZoom
+        // NOTE: midZ can be increased to render further objects for use with higher maxZoom, but you get problems with view distance because your camera gets too far from your character. Original midZ value is 3500.
         if ((maxZ <= 50) || (midZ >= 3500)) {
             return;
         }
