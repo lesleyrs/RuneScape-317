@@ -9,6 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.Sequence;
+import javax.sound.midi.Sequencer;
+import javax.sound.midi.Synthesizer;
+
 public class Signlink implements Runnable {
 
     public static final RandomAccessFile[] cache_idx = new RandomAccessFile[5];
@@ -33,6 +38,9 @@ public class Signlink implements Runnable {
     public static String wave = null;
     public static int wavevol;
     public static boolean reporterror = true;
+    public static Sequencer music = null;
+    public static Sequence sequence = null;
+    public static Synthesizer synthesizer = null;
 
     public static void startpriv() {
         threadliveid = (int) (Math.random() * 99999999D);
@@ -152,6 +160,41 @@ public class Signlink implements Runnable {
         }
     }
 
+    private void midiplay(String location) {
+        music = null;
+        synthesizer = null;
+        sequence = null;
+        File midiFile = new File(location);
+        try {
+            sequence = MidiSystem.getSequence(midiFile);
+            music = MidiSystem.getSequencer();
+            music.open();
+            music.setSequence(sequence);
+        } catch (Exception e) {
+            System.err.println("Problem loading MIDI file.");
+            e.printStackTrace();
+            return;
+        }
+        if (music instanceof Synthesizer) {
+            synthesizer = (Synthesizer) music;
+        } else {
+            try {
+                synthesizer = MidiSystem.getSynthesizer();
+                synthesizer.open();
+                if (synthesizer.getDefaultSoundbank() == null) {
+                    music.getTransmitter().setReceiver(MidiSystem.getReceiver());
+                } else {
+                    music.getTransmitter().setReceiver(synthesizer.getReceiver());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+        music.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
+        music.start();
+    }
+
     public static void reporterror(String s) {
         if (!reporterror) {
             return;
@@ -206,6 +249,12 @@ public class Signlink implements Runnable {
                 if (midiplay) {
                     midi = cachedir + savereq;
                     midiplay = false;
+
+                    if (music != null) {
+                        music.stop();
+                        music.close();
+                    }
+                    midiplay(midi);
                 }
                 savereq = null;
             }
