@@ -140,8 +140,6 @@ public class Game extends GameShell {
                     System.out.println("Usage: node-id, port-offset, [lowmem/highmem], [free/members], storeid");
                     return;
                 }
-            } else {
-                members = true;
             }
 
             if (args.length > 4) {
