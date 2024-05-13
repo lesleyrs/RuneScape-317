@@ -7820,6 +7820,7 @@ public class Game extends GameShell {
             boolean failed = false;
 
             try {
+                // TODO: commented out as waveplay isn't implemented
                 // if ((waveIDs[wave] == lastWaveID) && (waveLoops[wave] == lastWaveLoops)) {
                 //     if (!wavereplay()) {
                 //         failed = true;
