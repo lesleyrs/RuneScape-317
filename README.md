@@ -21,6 +21,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Scroll mousewheel to scroll interfaces or zoom camera, `cameraZoom` set to `maxZoom` by default
 - ::toggleroofs command, with `hideRoofs` being `true` by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good
+- Galkon's sound and music system https://rune-server.org/runescape-development/rs2-client/snippets/363314-sounds-music.html
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses Jagex's RSA key[^1]:
 ```
 Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789
@@ -32,7 +33,6 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 - Space to continue dialogue and number keys to select dialogue options - https://rune-server.org/runescape-development/rs2-client/snippets/657143-spacebar-continue-dialogue.html
 - Tab to reply to last private message and right click reply
 - Shift-drop items - check `sortMenuOptions`? Not sure if this is smart without dropped item value warnings, use `AHK` otherwise https://github.com/AutoHotkey/AutoHotkey
-- Music and sounds
 
 ## Notes
 - Added NOTE markers in the source to show how to set the client to it's original state. also added TODO's for things to look at.

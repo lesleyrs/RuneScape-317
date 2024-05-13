@@ -9,9 +9,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequence;
 import javax.sound.midi.Sequencer;
+import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Synthesizer;
 
 public class Signlink implements Runnable {
@@ -32,7 +34,7 @@ public class Signlink implements Runnable {
     public static int midipos;
     public static String midi = null;
     public static int midivol;
-    public static int midifade;
+    public static boolean midifade;
     public static boolean waveplay;
     public static int wavepos;
     public static String wave = null;
@@ -193,6 +195,29 @@ public class Signlink implements Runnable {
         }
         music.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
         music.start();
+    }
+
+    public static void setVolume(int value) {
+        int CHANGE_VOLUME = 7;
+        midivol = value;
+        if (synthesizer.getDefaultSoundbank() == null) {
+            try {
+                ShortMessage volumeMessage = new ShortMessage();
+                for (int i = 0; i < 16; i++) {
+                    volumeMessage.setMessage(ShortMessage.CONTROL_CHANGE, i, CHANGE_VOLUME, midivol);
+                    volumeMessage.setMessage(ShortMessage.CONTROL_CHANGE, i, 39, midivol);
+                    MidiSystem.getReceiver().send(volumeMessage, -1);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            MidiChannel[] channels = synthesizer.getChannels();
+            for (int c = 0; channels != null && c < channels.length; c++) {
+                channels[c].controlChange(CHANGE_VOLUME, midivol);
+                channels[c].controlChange(39, midivol);
+            }
+        }
     }
 
     public static void reporterror(String s) {

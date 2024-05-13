@@ -6,9 +6,11 @@ import org.apache.commons.math3.random.ISAACRandom;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
 import java.net.InetAddress;
@@ -1345,7 +1347,8 @@ public class Game extends GameShell {
     }
 
     public void stopMidi() {
-        Signlink.midifade = 0;
+        Signlink.music.stop();
+        Signlink.midifade = false;
         Signlink.midi = "stop";
     }
 
@@ -1744,7 +1747,7 @@ public class Game extends GameShell {
     }
 
     public void midisave(boolean fade, byte[] data) {
-        Signlink.midifade = fade ? 1 : 0;
+        Signlink.midifade = fade ? true : false;
         Signlink.midisave(data, data.length);
     }
 
@@ -2404,22 +2407,22 @@ public class Game extends GameShell {
             boolean active = midiEnabled;
 
             if (varp == 0) {
-                midivol(midiEnabled, 0);
+                midivol(midiEnabled, 192);
                 midiEnabled = true;
             }
 
             if (varp == 1) {
-                midivol(midiEnabled, -400);
+                midivol(midiEnabled, 128);
                 midiEnabled = true;
             }
 
             if (varp == 2) {
-                midivol(midiEnabled, -800);
+                midivol(midiEnabled, 64);
                 midiEnabled = true;
             }
 
             if (varp == 3) {
-                midivol(midiEnabled, -1200);
+                midivol(midiEnabled, 32);
                 midiEnabled = true;
             }
 
@@ -2440,6 +2443,8 @@ public class Game extends GameShell {
         }
 
         if (type == 4) {
+            SoundPlayer.setVolume(varp);
+
             if (varp == 0) {
                 waveEnabled = true;
                 setWaveVolume(0);
@@ -7819,16 +7824,18 @@ public class Game extends GameShell {
             boolean failed = false;
 
             try {
-                if ((waveIDs[wave] == lastWaveID) && (waveLoops[wave] == lastWaveLoops)) {
-                    if (!wavereplay()) {
-                        failed = true;
-                    }
-                } else {
+                // if ((waveIDs[wave] == lastWaveID) && (waveLoops[wave] == lastWaveLoops)) {
+                //     if (!wavereplay()) {
+                //         failed = true;
+                //     }
+                // } else {
                     Buffer buffer = SoundTrack.generate(waveLoops[wave], waveIDs[wave]);
 
                     if (buffer == null) {
                         failed = true;
                     } else {
+                        new SoundPlayer((InputStream) new ByteArrayInputStream(buffer.data, 0, buffer.position), 1, waveDelay[wave]);
+
                         // the sample rate is 22050Hz and sample size is 1 byte which means dividing the bytes by 22 is
                         // roughly converting the bytes to time in milliseconds
                         if ((System.currentTimeMillis() + (long) (buffer.position / 22)) > (lastWaveStartTime + (long) (lastWaveLength / 22))) {
@@ -7843,7 +7850,7 @@ public class Game extends GameShell {
                             }
                         }
                     }
-                }
+                // }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -9779,7 +9786,8 @@ public class Game extends GameShell {
     }
 
     public void midivol(boolean active, int vol) {
-        Signlink.midivol = vol;
+        Signlink.setVolume(vol);
+        // Signlink.midivol = vol;
         if (active) {
             Signlink.midi = "voladjust";
         }

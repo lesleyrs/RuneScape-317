@@ -45,8 +45,8 @@ public class SoundPlayer implements Runnable {
 			sound = (Clip) AudioSystem.getLine(info);
 			sound.open(stream);
 			FloatControl volume = (FloatControl) sound.getControl(FloatControl.Type.MASTER_GAIN);
-			// volume.setValue(getDecibels(soundLevel - getVolume()));
-			volume.setValue(getDecibels(getVolume()));
+			volume.setValue(getDecibels(soundLevel - getVolume()));
+			// volume.setValue(getDecibels(getVolume()));
 			if (delay > 0) {
 				Thread.sleep(delay);
 			}
@@ -84,40 +84,14 @@ public class SoundPlayer implements Runnable {
 	 * @param level
 	 * @return
 	 */
-	// public float getDecibels(int level) {
-	// 	switch (level) {
-	// 		case 1:
-	// 			return (float) -80.0;
-	// 		case 2:
-	// 			return (float) -70.0;
-	// 		case 3:
-	// 			return (float) -60.0;
-	// 		case 4:
-	// 			return (float) -50.0;
-	// 		case 5:
-	// 			return (float) -40.0;
-	// 		case 6:
-	// 			return (float) -30.0;
-	// 		case 7:
-	// 			return (float) -20.0;
-	// 		case 8:
-	// 			return (float) -10.0;
-	// 		case 9:
-	// 			return (float) -0.0;
-	// 		case 10:
-	// 			return (float) 6.0;
-	// 		default:
-	// 			return (float) 0.0;
-	// 	}
-	// }
 	public float getDecibels(int level) {
 		switch (level) {
 			case 1:
-				return (float) -1.0;
+				return (float) -25.0;
 			case 2:
-				return (float) -5.0;
+				return (float) -50.0;
 			case 3:
-				return (float) -15.0;
+				return (float) -75.0;
 			case 4:
 				return (float) -100.0;
 			default:
