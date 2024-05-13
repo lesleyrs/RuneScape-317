@@ -2441,23 +2441,21 @@ public class Game extends GameShell {
         }
 
         if (type == 4) {
-            SoundPlayer.setVolume(varp);
-
             if (varp == 0) {
                 waveEnabled = true;
                 setWaveVolume(0);
             }
             if (varp == 1) {
                 waveEnabled = true;
-                setWaveVolume(-400);
+                setWaveVolume(-25);
             }
             if (varp == 2) {
                 waveEnabled = true;
-                setWaveVolume(-800);
+                setWaveVolume(-50);
             }
             if (varp == 3) {
                 waveEnabled = true;
-                setWaveVolume(-1200);
+                setWaveVolume(-75);
             }
             if (varp == 4) {
                 waveEnabled = false;
@@ -7832,7 +7830,7 @@ public class Game extends GameShell {
                     if (buffer == null) {
                         failed = true;
                     } else {
-                        new SoundPlayer((InputStream) new ByteArrayInputStream(buffer.data, 0, buffer.position), 1, waveDelay[wave]);
+                        new SoundPlayer((InputStream) new ByteArrayInputStream(buffer.data, 0, buffer.position), waveDelay[wave]);
 
                         // the sample rate is 22050Hz and sample size is 1 byte which means dividing the bytes by 22 is
                         // roughly converting the bytes to time in milliseconds

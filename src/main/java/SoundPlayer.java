@@ -14,8 +14,6 @@ public class SoundPlayer implements Runnable {
 	private InputStream soundStream;
 	private Thread player;
 	private int delay;
-	private int soundLevel;
-	public static int volume;
 
 	/**
 	 * Initializes the sound player.
@@ -23,12 +21,8 @@ public class SoundPlayer implements Runnable {
 	 * @param level
 	 * @param delay
 	 */
-	public SoundPlayer(InputStream stream, int level, int delay) {
-		if (level == 0 || volume == 4 || level - volume <= 0) {
-			return;
-		}
+	public SoundPlayer(InputStream stream, int delay) {
 		this.soundStream = stream;
-		this.soundLevel = level;
 		this.delay = delay;
 		player = new Thread(this);
 		player.start();
@@ -44,9 +38,8 @@ public class SoundPlayer implements Runnable {
 			info = new DataLine.Info(Clip.class, stream.getFormat());
 			sound = (Clip) AudioSystem.getLine(info);
 			sound.open(stream);
-			FloatControl volume = (FloatControl) sound.getControl(FloatControl.Type.MASTER_GAIN);
-			volume.setValue(getDecibels(soundLevel - getVolume()));
-			// volume.setValue(getDecibels(getVolume()));
+			FloatControl volumeControl = (FloatControl) sound.getControl(FloatControl.Type.MASTER_GAIN);
+			volumeControl.setValue(Signlink.wavevol);
 			if (delay > 0) {
 				Thread.sleep(delay);
 			}
@@ -61,41 +54,6 @@ public class SoundPlayer implements Runnable {
 		} catch (Exception e) {
 			player.interrupt();
 			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Sets the client's volume level.
-	 * @param level
-	 */
-	public static void setVolume(int level) {
-		volume = level;
-	}
-
-	/**
-	 * Returns the client's volume level.
-	 */
-	public static int getVolume() {
-		return volume;
-	}
-
-	/**
-	 * Returns the decibels for a given volume level.
-	 * @param level
-	 * @return
-	 */
-	public float getDecibels(int level) {
-		switch (level) {
-			case 1:
-				return (float) -25.0;
-			case 2:
-				return (float) -50.0;
-			case 3:
-				return (float) -75.0;
-			case 4:
-				return (float) -100.0;
-			default:
-				return (float) 0.0;
 		}
 	}
 }
