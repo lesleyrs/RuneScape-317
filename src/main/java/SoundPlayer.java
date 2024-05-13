@@ -39,7 +39,7 @@ public class SoundPlayer implements Runnable {
 			sound = (Clip) AudioSystem.getLine(info);
 			sound.open(stream);
 			FloatControl volumeControl = (FloatControl) sound.getControl(FloatControl.Type.MASTER_GAIN);
-			volumeControl.setValue(Signlink.wavevol);
+			volumeControl.setValue(20.0f * (float)Math.log10(Signlink.wavevol / 100.0));
 			if (delay > 0) {
 				Thread.sleep(delay);
 			}

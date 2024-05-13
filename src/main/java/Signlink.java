@@ -33,12 +33,12 @@ public class Signlink implements Runnable {
     public static boolean midiplay;
     public static int midipos;
     public static String midi = null;
-    public static int midivol;
+    public static int midivol = 127;
     public static boolean midifade;
     public static boolean waveplay;
     public static int wavepos;
     public static String wave = null;
-    public static int wavevol;
+    public static int wavevol = 100;
     public static boolean reporterror = true;
     public static Sequencer music = null;
     public static Sequence sequence = null;
@@ -162,7 +162,7 @@ public class Signlink implements Runnable {
         }
     }
 
-    private void midiplay(String location) {
+    private void midiplay(String location) { // TODO: fade out
         music = null;
         synthesizer = null;
         sequence = null;
@@ -193,18 +193,18 @@ public class Signlink implements Runnable {
                 return;
             }
         }
+
         music.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
+        updateVolume(); // TODO: this doesn't work why? initial music value doesn't seem to be 127
         music.start();
     }
 
-    public static void setVolume(int value) {
-        int CHANGE_VOLUME = 7;
-        midivol = value;
+    public static void updateVolume() {
         if (synthesizer.getDefaultSoundbank() == null) {
             try {
                 ShortMessage volumeMessage = new ShortMessage();
                 for (int i = 0; i < 16; i++) {
-                    volumeMessage.setMessage(ShortMessage.CONTROL_CHANGE, i, CHANGE_VOLUME, midivol);
+                    volumeMessage.setMessage(ShortMessage.CONTROL_CHANGE, i, 7, midivol);
                     volumeMessage.setMessage(ShortMessage.CONTROL_CHANGE, i, 39, midivol);
                     MidiSystem.getReceiver().send(volumeMessage, -1);
                 }
@@ -214,7 +214,7 @@ public class Signlink implements Runnable {
         } else {
             MidiChannel[] channels = synthesizer.getChannels();
             for (int c = 0; channels != null && c < channels.length; c++) {
-                channels[c].controlChange(CHANGE_VOLUME, midivol);
+                channels[c].controlChange(7, midivol);
                 channels[c].controlChange(39, midivol);
             }
         }

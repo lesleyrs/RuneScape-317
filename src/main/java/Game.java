@@ -2405,12 +2405,12 @@ public class Game extends GameShell {
             boolean active = midiEnabled;
 
             if (varp == 0) {
-                midivol(midiEnabled, 192);
+                midivol(midiEnabled, 127);
                 midiEnabled = true;
             }
 
             if (varp == 1) {
-                midivol(midiEnabled, 128);
+                midivol(midiEnabled, 96);
                 midiEnabled = true;
             }
 
@@ -2443,19 +2443,19 @@ public class Game extends GameShell {
         if (type == 4) {
             if (varp == 0) {
                 waveEnabled = true;
-                setWaveVolume(0);
+                setWaveVolume(100);
             }
             if (varp == 1) {
                 waveEnabled = true;
-                setWaveVolume(-25);
+                setWaveVolume(75);
             }
             if (varp == 2) {
                 waveEnabled = true;
-                setWaveVolume(-50);
+                setWaveVolume(50);
             }
             if (varp == 3) {
                 waveEnabled = true;
-                setWaveVolume(-75);
+                setWaveVolume(25);
             }
             if (varp == 4) {
                 waveEnabled = false;
@@ -9782,8 +9782,8 @@ public class Game extends GameShell {
     }
 
     public void midivol(boolean active, int vol) {
-        Signlink.setVolume(vol);
-        // Signlink.midivol = vol;
+        Signlink.midivol = vol;
+        Signlink.updateVolume();
         if (active) {
             Signlink.midi = "voladjust";
         }
