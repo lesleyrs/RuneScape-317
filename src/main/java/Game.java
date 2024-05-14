@@ -106,6 +106,7 @@ public class Game extends GameShell {
     }
 
     public static void main(String[] args) throws UnknownHostException {
+        // NOTE: uncomment to not require changing application properties or screen resolution, but will be small on highres screens
         // System.setProperty("sun.java2d.uiScale", "1.0");
         System.setProperty("java.net.preferIPv6Addresses", "true");
         System.out.println("RS2 user client - release #" + Signlink.clientversion);
