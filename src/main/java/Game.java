@@ -1346,7 +1346,9 @@ public class Game extends GameShell {
     }
 
     public void stopMidi() {
-        Signlink.music.stop();
+        if (Signlink.music != null) {
+            Signlink.music.stop();
+        }
         Signlink.midifade = false;
         Signlink.midi = "stop";
     }
