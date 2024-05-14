@@ -2,10 +2,9 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import javax.swing.*;
 import java.awt.*;
 
-public class GameFrame extends JFrame {
+public class GameFrame extends Frame {
 
     public final GameShell shell;
 
@@ -20,5 +19,4 @@ public class GameFrame extends JFrame {
         setVisible(true);
         transferFocus();
     }
-
 }
