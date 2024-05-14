@@ -7820,12 +7820,11 @@ public class Game extends GameShell {
             boolean failed = false;
 
             try {
-                // TODO: commented out as waveplay isn't implemented
-                // if ((waveIDs[wave] == lastWaveID) && (waveLoops[wave] == lastWaveLoops)) {
-                //     if (!wavereplay()) {
-                //         failed = true;
-                //     }
-                // } else {
+                if ((waveIDs[wave] == lastWaveID) && (waveLoops[wave] == lastWaveLoops)) {
+                    if (!wavereplay()) {
+                        failed = true;
+                    }
+                } else {
                     Buffer buffer = SoundTrack.generate(waveLoops[wave], waveIDs[wave]);
 
                     if (buffer == null) {
@@ -7847,7 +7846,7 @@ public class Game extends GameShell {
                             }
                         }
                     }
-                // }
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
