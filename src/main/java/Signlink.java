@@ -41,7 +41,7 @@ public class Signlink implements Runnable {
     public static boolean midiplay;
     public static int midipos;
     public static String midi = null;
-    public static int midivol = 127;
+    public static int midivol;
     public static boolean midifade;
     public static boolean waveplay;
     public static int wavepos;
@@ -171,6 +171,52 @@ public class Signlink implements Runnable {
         }
     }
 
+    private void waveplay() {
+        if (savebuf == null) {
+            AudioInputStream audioInputStream = null;
+            try {
+                audioInputStream = AudioSystem.getAudioInputStream(new File(wave));
+            } catch (UnsupportedAudioFileException e1) {
+                e1.printStackTrace();
+                return;
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
+            }
+            AudioFormat format = audioInputStream.getFormat();
+            SourceDataLine auline = null;
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+            try {
+                auline = (SourceDataLine) AudioSystem.getLine(info);
+                auline.open(format);
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+                return;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+            FloatControl volumeControl = (FloatControl) auline.getControl(FloatControl.Type.MASTER_GAIN);
+            volumeControl.setValue(20.0f * (float)Math.log10(wavevol / 100.0));
+            auline.start();
+            int nBytesRead = 0;
+            byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
+            try {
+                while (nBytesRead != -1) {
+                    nBytesRead = audioInputStream.read(abData, 0, abData.length);
+                    if (nBytesRead >= 0)
+                        auline.write(abData, 0, nBytesRead);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            } finally {
+                auline.drain();
+                auline.close();
+            }
+        }
+    }
+    
     private void midiplay(String location) {
         music = null;
         synthesizer = null;
@@ -204,7 +250,7 @@ public class Signlink implements Runnable {
         }
 
         music.setLoopCount(Sequencer.LOOP_CONTINUOUSLY);
-        updateVolume(); // TODO: this doesn't work why? initial music value doesn't seem to be 127
+        updateVolume(); // TODO: this doesn't work why? initial music value doesn't get set to midivol
         music.start();
     }
 
@@ -280,49 +326,7 @@ public class Signlink implements Runnable {
                     wave = cachedir + savereq;
                     waveplay = false;
 
-                    if (savebuf == null) {
-                        AudioInputStream audioInputStream = null;
-                        try {
-                            audioInputStream = AudioSystem.getAudioInputStream(new File(wave));
-                        } catch (UnsupportedAudioFileException e1) {
-                            e1.printStackTrace();
-                            return;
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                            return;
-                        }
-                        AudioFormat format = audioInputStream.getFormat();
-                        SourceDataLine auline = null;
-                        DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-                        try {
-                            auline = (SourceDataLine) AudioSystem.getLine(info);
-                            auline.open(format);
-                        } catch (LineUnavailableException e) {
-                            e.printStackTrace();
-                            return;
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            return;
-                        }
-                        FloatControl volumeControl = (FloatControl) auline.getControl(FloatControl.Type.MASTER_GAIN);
-                        volumeControl.setValue(20.0f * (float)Math.log10(wavevol / 100.0));
-                        auline.start();
-                        int nBytesRead = 0;
-                        byte[] abData = new byte[EXTERNAL_BUFFER_SIZE];
-                        try {
-                            while (nBytesRead != -1) {
-                                nBytesRead = audioInputStream.read(abData, 0, abData.length);
-                                if (nBytesRead >= 0)
-                                    auline.write(abData, 0, nBytesRead);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            return;
-                        } finally {
-                            auline.drain();
-                            auline.close();
-                        }
-                    }
+                    waveplay();
                 }
                 if (midiplay) {
                     midi = cachedir + savereq;
