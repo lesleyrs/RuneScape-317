@@ -10,8 +10,4 @@ else
 endif
 
 pkg:
-	mvn package
-
-clean:
-	mvn clean
-
+	mvn clean package
