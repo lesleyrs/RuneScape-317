@@ -33,7 +33,7 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 - Space to continue dialogue and number keys to select dialogue options - https://rune-server.org/runescape-development/rs2-client/snippets/657143-spacebar-continue-dialogue.html
 - Tab to reply to last private message and right click reply
 - Shift-drop items - Not sure if this is smart without dropped item value warnings, use `AHK` otherwise https://github.com/AutoHotkey/AutoHotkey
-- Midi fade and fix startup midi volume? combine both sound effect systems so the sound delay works for both
+- Midi fade and fix startup midi volume? combine both sound effect systems so the sound delay works for both (look at 400+)
 
 ## Notes
 - Added NOTE markers in the source to show how to set the client to it's original state. also added TODO's for things to look at.
