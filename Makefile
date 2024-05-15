@@ -10,4 +10,4 @@ else
 endif
 
 pkg:
-	mvn clean package
+	mvn clean package && java -jar target/317-1.0-SNAPSHOT-jar-with-dependencies.jar
