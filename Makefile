@@ -9,5 +9,5 @@ else
 	mvn compile exec:java -Dexec.mainClass=Game -Dexec.args="10 0 highmem members 32"
 endif
 
-pkg:
+jar:
 	mvn clean package && java -jar target/317-1.0-SNAPSHOT-jar-with-dependencies.jar
