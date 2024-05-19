@@ -293,7 +293,7 @@ public class Game extends GameShell {
     public Image8 imageRedstone2hv;
     public Image24 imageMapmarker0;
     public Image24 imageMapmarker1;
-    public boolean jaggrabEnabled = true; // NOTE: original value: false, lets non-http fileservers servers load immediately but is less efficient?
+    public boolean jaggrabEnabled = true; // NOTE: original value: false
     public int lastWaveID = -1;
     public int weightCarried;
     public MouseRecorder mouseRecorder;
