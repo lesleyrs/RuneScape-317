@@ -54,10 +54,6 @@ public class OnDemand implements Runnable {
     }
 
     public boolean validate(int expectedVersion, int crc, byte[] src) {
-        if (src != null) {
-            return true;
-        }
-
         if ((src == null) || (src.length < 2)) {
             return false;
         }
@@ -69,7 +65,6 @@ public class OnDemand implements Runnable {
         crc32.update(src, 0, fileEndPos);
 
         return fileVersion == expectedVersion && (int) crc32.getValue() == crc;
-
     }
 
     public void read() {
