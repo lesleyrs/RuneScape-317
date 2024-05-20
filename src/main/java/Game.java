@@ -291,7 +291,7 @@ public class Game extends GameShell {
     public Image8 imageRedstone2hv;
     public Image24 imageMapmarker0;
     public Image24 imageMapmarker1;
-    public boolean jaggrabEnabled = true; // NOTE: original value: false
+    public boolean jaggrabEnabled = true; // NOTE: original value: false https://rune-server.org/runescape-development/rs2-server/informative-threads/161122-317-jaggrab-protocol.html#post1408763
     public int lastWaveID = -1;
     public int weightCarried;
     public MouseRecorder mouseRecorder;

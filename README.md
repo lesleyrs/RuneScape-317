@@ -22,6 +22,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - ::toggleroofs command, with `hideRoofs` being `true` by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good. To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS to have fkeys work by themselves.
 - `System.setProperty("sun.java2d.uiScale", "1.0");` is set by default to avoid scaling issues, if you want to let Windows scale it up according to your resolution settings you can do the following: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale`. You have to do this for both `java.exe` and `javaw.exe` depending on how you load the game.
+- Replaced apache math3 isaac with 317refactor ISAACRandomGenerator class to avoid jar bloat
 - Galkon's sound and music system[^2] without the stupid packet changes
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses Jagex's RSA key[^1]:
 ```
@@ -39,7 +40,7 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 ## Usage
 - I added a makefile to easily run the client without an IDE, on Windows you can get `make` from here https://github.com/skeeto/w64devkit and then adding its bin directory to the `PATH` environment variable. For editing this way also grab https://github.com/eclipse-jdtls/eclipse.jdt.ls (requires a recent JDK version and an editor with LSP support). Search for `NOTE` to find settings and `TODO` for stuff that needs to be looked at.
 - You can get caches from here: https://archive.openrs2.org/ https://runewiki.org/archive/. 317 cache is not recommended right now as it's one of the less complete ones in terms of models and will crash the client in Draynor. #318 and #319 are the most complete caches before fullscreen interfaces in #339.[^3] **TODO**: check if 333 cache gives issues with headicons on a correct server, if yes then #332 will be latest compatible cache.
-- Dane's client doesn't exactly replicate the original clients behaviour with errors. It has some checks to avoid them when the original would get a T2 error, but also the opposite way around. Test with the unedited 317 client sometimes to make sure your server is compatible. So far I've restored the T2 crash on bank space limit being exceeded with server packet `53`.
+- Dane's client doesn't exactly replicate the original clients behaviour with errors. It has some checks to avoid them when the original would get a T2 error, but also the opposite way around. Test with the unedited 317 client sometimes to make sure your server is compatible. So far I've restored the T2 crash on bank space limit being exceeded with server packet `53`, and cache validating.
 
 [^1]: https://rune-server.org/runescape-development/rs2-server/configuration/700119-jagexs-login-rsa-key-used-revision-186-revision-597-a.html
 [^2]: https://rune-server.org/runescape-development/rs2-client/snippets/363314-sounds-music.html
