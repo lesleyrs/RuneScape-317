@@ -2,8 +2,6 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3)
 
-import org.apache.commons.math3.random.ISAACRandom;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
@@ -373,7 +371,7 @@ public class Game extends GameShell {
      * The max allowable distance away from the sides of a currently grabbed scrollbar grip before stopping input.
      */
     public int scrollInputPadding;
-    public ISAACRandom randomIn;
+    public ISAACRandomGenerator randomIn;
     public Image24 imageMapedge;
     public String chatbackInput = "";
     public int daysSinceLastLogin;
@@ -7031,9 +7029,7 @@ public class Game extends GameShell {
                 in.position = 0;
                 serverSeed = in.read64();
 
-                // apache math tries to fill the remaining 1008 bytes up with random junk if we don't give it 256 ints.
-                int[] seed = new int[1 << 8];
-
+                int[] seed = new int[4];
                 seed[0] = (int) (Math.random() * 99999999D);
                 seed[1] = (int) (Math.random() * 99999999D);
                 seed[2] = (int) (serverSeed >> 32);
@@ -7063,11 +7059,11 @@ public class Game extends GameShell {
 
                 login.write(out.data, 0, out.position);
 
-                out.random = new ISAACRandom(seed);
+                out.random = new ISAACRandomGenerator(seed);
                 for (int i = 0; i < 4; i++) {
                     seed[i] += 50;
                 }
-                randomIn = new ISAACRandom(seed);
+                randomIn = new ISAACRandomGenerator(seed);
 
                 connection.write(login.data, 0, login.position);
                 response = connection.read();
@@ -11262,7 +11258,7 @@ public class Game extends GameShell {
                 connection.read(in.data, 0, 1);
                 packetType = in.data[0] & 0xff;
                 if (randomIn != null) {
-                    packetType = (packetType - randomIn.nextInt()) & 0xff;
+                    packetType = (packetType - randomIn.value()) & 0xff;
                 }
                 packetSize = PacketIn.SIZE[packetType];
                 bytesIn++;

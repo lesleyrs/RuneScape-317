@@ -1,5 +1,3 @@
-import org.apache.commons.math3.random.ISAACRandom;
-
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 
@@ -33,7 +31,7 @@ public class Buffer extends DoublyLinkedList.Node {
     public byte[] data;
     public int position;
     public int bitPosition;
-    public ISAACRandom random;
+    public ISAACRandomGenerator random;
 
     public Buffer(int size) {
         this(new byte[size]);
@@ -45,7 +43,7 @@ public class Buffer extends DoublyLinkedList.Node {
     }
 
     public void writeOp(int op) {
-        data[position++] = (byte) (op + random.nextInt());
+        data[position++] = (byte) (op + random.value());
     }
 
     public void writeSize(int value) {
