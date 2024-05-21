@@ -15,6 +15,7 @@ public class OnDemand implements Runnable {
     public final byte[][] storeFilePriorities = new byte[4][];
     public final DoublyLinkedList prefetches = new DoublyLinkedList();
     public final DoublyLinkedList completed = new DoublyLinkedList();
+    public final byte[] gzipInputBuffer = new byte[65000];
     public final LinkedList<OnDemandRequest> requests = new LinkedList<>();
     public final int[][] storeFileVersions = new int[4][];
     public final int[][] storeFileChecksums = new int[4][];
@@ -506,10 +507,24 @@ public class OnDemand implements Runnable {
             return request;
         }
 
-        try (GZIPInputStream gzis = new GZIPInputStream(new ByteArrayInputStream(request.data))) {
-            // NOTE: 65000 buffer size was removed
-            request.data = gzis.readAllBytes();
+        int i = 0;
+        try (GZIPInputStream gzipInputStream = new GZIPInputStream(new ByteArrayInputStream(request.data))) {
+            // request.data = gzipInputStream.readAllBytes(); // NOTE: this line can be used by replacing until arraycopy, java 9+
+            do {
+                if (i == this.gzipInputBuffer.length) {
+                    throw new RuntimeException("buffer overflow!");
+                }
+                final int k = gzipInputStream.read(this.gzipInputBuffer, i, this.gzipInputBuffer.length - i);
+                if (k == -1) {
+                    break;
+                }
+                i += k;
+            } while (true);
+        } catch (final IOException _ex) {
+            throw new RuntimeException("error unzipping");
         }
+        request.data = new byte[i];
+        System.arraycopy(this.gzipInputBuffer, 0, request.data, 0, i);
 
         return request;
     }
