@@ -2,11 +2,9 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import org.apache.commons.collections4.map.LRUMap;
-
 public class PlayerEntity extends PathingEntity {
 
-    public static LRUMap<Long, Model> modelCache = new LRUMap<>(260);
+    public static LRUCache<Model> modelCache = new LRUCache<>(260);
     public final int[] colors = new int[5];
     public final int[] appearances = new int[12];
     public long modelUID = -1L;

@@ -2,8 +2,6 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import org.apache.commons.collections4.map.LRUMap;
-
 import java.io.IOException;
 
 public class NPCType {
@@ -14,7 +12,7 @@ public class NPCType {
     private static NPCType[] cache;
     public static Game game;
     public static int count;
-    public static LRUMap<Long, Model> modelCache = new LRUMap<>(30);
+    public static LRUCache<Model> modelCache = new LRUCache<>(30);
 
     public static NPCType get(int id) {
         for (int j = 0; j < 20; j++) {

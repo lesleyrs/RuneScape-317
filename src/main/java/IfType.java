@@ -2,14 +2,12 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import org.apache.commons.collections4.map.LRUMap;
-
 import java.io.IOException;
 
 public class IfType {
 
-    public static final LRUMap<Long, Model> modelCache = new LRUMap<>(30);
-    public static LRUMap<Long, Image24> imageCache;
+    public static final LRUCache<Model> modelCache = new LRUCache<>(30);
+    public static LRUCache<Image24> imageCache;
     public static IfType[] instances;
 
     public static final int TYPE_PARENT = 0;
@@ -34,7 +32,7 @@ public class IfType {
     public static final int MODEL_TYPE_PLAYER_DESIGN = 5;
 
     public static void unpack(FileArchive config, BitmapFont[] fonts, FileArchive media) throws IOException {
-        imageCache = new LRUMap<>(500);
+        imageCache = new LRUCache<>(500);
         Buffer in = new Buffer(config.read("data"));
 
         int parentID = -1;

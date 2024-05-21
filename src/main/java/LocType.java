@@ -2,8 +2,6 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import org.apache.commons.collections4.map.LRUMap;
-
 import java.io.IOException;
 
 public class LocType {
@@ -42,12 +40,12 @@ public class LocType {
     /**
      * This is where dynamically generated models go.
      */
-    public static LRUMap<Long, Model> modelCacheDynamic = new LRUMap<>(30);
+    public static LRUCache<Model> modelCacheDynamic = new LRUCache<>(30);
     public static LocType[] cache;
     /**
      * This is where basic models go.
      */
-    public static LRUMap<Long, Model> modelCacheStatic = new LRUMap<>(500);
+    public static LRUCache<Model> modelCacheStatic = new LRUCache<>(500);
 
     public static LocType get(int locID) {
         if (locID >= count) {

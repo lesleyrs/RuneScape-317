@@ -2,14 +2,12 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import org.apache.commons.collections4.map.LRUMap;
-
 import java.io.IOException;
 
 public class ObjType {
 
-    public static LRUMap<Integer, Image24> iconCache = new LRUMap<>(100);
-    public static LRUMap<Integer, Model> modelCache = new LRUMap<>(50);
+    public static LRUCache<Image24> iconCache = new LRUCache<>(100);
+    public static LRUCache<Model> modelCache = new LRUCache<>(50);
     public static ObjType[] recent;
     public static int recentPos;
     public static Buffer dat;

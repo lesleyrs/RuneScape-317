@@ -2,15 +2,13 @@
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) 
 
-import org.apache.commons.collections4.map.LRUMap;
-
 import java.io.IOException;
 
 public class SpotAnimType {
 
     public static int count;
     public static SpotAnimType[] instances;
-    public static LRUMap<Integer, Model> modelCache = new LRUMap<>(30);
+    public static LRUCache<Model> modelCache = new LRUCache<>(30);
 
     public static void unpack(FileArchive archive) throws IOException {
         Buffer buffer = new Buffer(archive.read("spotanim.dat"));
