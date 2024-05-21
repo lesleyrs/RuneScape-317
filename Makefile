@@ -5,7 +5,7 @@ build:
 	mkdir -p bin
 	javac -d bin src/*.java
 
-recursive:
+recurse:
 	mkdir -p bin
 	javac -d bin $(shell find src -name *.java)
 
