@@ -9,7 +9,7 @@ recurse:
 	mkdir -p bin
 	javac -d bin $(shell find src -name *.java)
 
-jar:
+jar: build
 	jar cmvf META-INF/MANIFEST.MF 317.jar -C bin/ .
 	java -jar 317.jar 10 0 highmem members 32
 

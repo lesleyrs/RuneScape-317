@@ -12,9 +12,18 @@ public class GameFrame extends Frame {
         this.shell = shell;
         setTitle("Jagex");
         setResizable(false);
-        setLayout(new BorderLayout());
-        add(shell, BorderLayout.CENTER);
-        pack();
+        if (Game.fullscreen) {
+            setBackground(Color.BLACK);
+            setUndecorated(true);
+            setLayout(new GridBagLayout());
+            add(shell, new GridBagConstraints());
+            pack();
+            setExtendedState(Frame.MAXIMIZED_BOTH);
+        } else {
+            setLayout(new BorderLayout());
+            add(shell, BorderLayout.CENTER);
+            pack();
+        }
         setLocationRelativeTo(null);
         setVisible(true);
         transferFocus();
