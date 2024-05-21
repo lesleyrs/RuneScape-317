@@ -9,7 +9,6 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Don't consume tab key with `setFocusTraversalKeysEnabled(false);`, this fixes dead code for title screen navigation
 - Allow connecting to local WSL2 servers from Windows with `System.setProperty("java.net.preferIPv6Addresses", "true");` and using an empty string or localhost instead of 127.0.0.1 or 0.0.0.0
 - Fix `findcachedir()` home directory path to actually work with `System.getProperty("user.home") + "/"`, still defaults to c:/ drive on Windows
-- Require JDK 21 to build, this could be lowered but maven warns about dropping 8 already
 
 **Quality of life features**:
 - Run client without passing arguments for highmem/members
@@ -22,7 +21,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - ::toggleroofs command, with `hideRoofs` being `true` by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good. To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS to have fkeys work by themselves.
 - `System.setProperty("sun.java2d.uiScale", "1.0");` is set by default to avoid scaling issues, if you want to let Windows scale it up according to your resolution settings you can do the following: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale`. You have to do this for both `java.exe` and `javaw.exe` depending on how you load the game.
-- Replaced apache math3 isaac with 317refactor ISAACRandomGenerator class to avoid jar bloat
+- Swapped out maven build system and dependencies for a makefile to avoid jar bloat and simplicity
 - Galkon's sound and music system[^2] without the stupid packet changes
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses Jagex's RSA key[^1]:
 ```
