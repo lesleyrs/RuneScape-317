@@ -17,13 +17,13 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Ability to use k/m/b for entering amounts, and allow entering over integer maximum
 - Left click compass to make the camera face north
 - Hold mousewheel to rotate camera
-- Scroll mousewheel to scroll interfaces or zoom camera, `cameraZoom` set to `maxZoom` by default
+- Scroll mousewheel to scroll interfaces or zoom camera, `cameraZoom` set to `maxZoom` (6) by default which is arbitrary but works well when not increasing object render distance
 - ::toggleroofs command, with `hideRoofs` being `true` by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good. To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS to have fkeys work by themselves.
 - `System.setProperty("sun.java2d.uiScale", "1.0");` is set by default to avoid scaling issues, if you want to let Windows scale it up according to your resolution settings you can do the following: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale`. You have to do this for both `java.exe` and `javaw.exe` depending on how you load the game.
 - Swapped out maven build system and dependencies for a makefile to avoid jar bloat and simplicity
 - Galkon's sound and music system[^2] without the stupid packet changes
-- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Uses Jagex's RSA key[^1]:
+- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Set `disableCRC` to true as you can't use this to set the initial jaggrab or http address. This uses Jagex's RSA key[^1]:
 ```
 Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789
 Private exponent: 4563042879983685819415859508309337987464904274730456483940553788384065737798175536144539635545496149193181089921240252410947054964044522362195913220892133
