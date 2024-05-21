@@ -507,6 +507,7 @@ public class OnDemand implements Runnable {
         }
 
         try (GZIPInputStream gzis = new GZIPInputStream(new ByteArrayInputStream(request.data))) {
+            // NOTE: 65000 buffer size was removed
             request.data = gzis.readAllBytes();
         }
 

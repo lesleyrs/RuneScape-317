@@ -731,7 +731,7 @@ public class Game extends GameShell {
 
         if (Signlink.cache_dat != null) {
             for (int i = 0; i < 5; i++) {
-                filestores[i] = new FileStore(500000, Signlink.cache_dat, Signlink.cache_idx[i], i + 1);
+                filestores[i] = new FileStore(Signlink.cache_dat, Signlink.cache_idx[i], i + 1);
             }
         }
 

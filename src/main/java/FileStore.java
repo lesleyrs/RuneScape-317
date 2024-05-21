@@ -13,12 +13,10 @@ public class FileStore {
     public final int store;
     public int maxFileSize;
 
-    public FileStore(int maxFileSize, RandomAccessFile dat, RandomAccessFile idx, int store) {
-        this.maxFileSize = 65000;
+    public FileStore(RandomAccessFile dat, RandomAccessFile idx, int store) {
         this.store = store;
         this.dat = dat;
         this.idx = idx;
-        this.maxFileSize = maxFileSize;
     }
 
     public synchronized long getFileCount() throws IOException {
@@ -34,7 +32,8 @@ public class FileStore {
             int size = ((buf[0] & 0xff) << 16) + ((buf[1] & 0xff) << 8) + (buf[2] & 0xff);
             int sector = ((buf[3] & 0xff) << 16) + ((buf[4] & 0xff) << 8) + (buf[5] & 0xff);
 
-            if (size > maxFileSize) {
+            // NOTE: comment this out or change max size to load 377 cache, even though it isn't fully compatible
+            if (size < 0 || size > 0x7a120) {
                 return null;
             }
 
