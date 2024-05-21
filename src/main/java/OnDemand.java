@@ -1,5 +1,3 @@
-import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +5,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.zip.CRC32;
+import java.util.zip.GZIPInputStream;
 
 public class OnDemand implements Runnable {
 
@@ -507,7 +506,7 @@ public class OnDemand implements Runnable {
             return request;
         }
 
-        try (GzipCompressorInputStream gzis = new GzipCompressorInputStream(new ByteArrayInputStream(request.data))) {
+        try (GZIPInputStream gzis = new GZIPInputStream(new ByteArrayInputStream(request.data))) {
             request.data = gzis.readAllBytes();
         }
 
