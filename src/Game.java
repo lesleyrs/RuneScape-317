@@ -26,7 +26,7 @@ public class Game extends GameShell {
     public static int cameraZoom = maxZoom; // original value was 3
     public static boolean hideRoofs = true; // original value was false
     public static boolean disableCRC = true; // original value was false
-    public static boolean fullscreen = false; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale during runtime won't work even with dispose().
+    public static boolean fullscreen = false; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale later won't work even with dispose(). Trying to add a fullscreen toggle using dispose() and init() also causes runFlames to speed up (restoring original runFlames lag detection code doesn't solve this either).
     public static boolean fixTransparencyOverflow = true; // original value was false, fixes the lines in transparent models like ghostly or bank booths. This changes index operand to 'offset' and adds 'offset++' below each line.
     public static boolean full512pxViewport = true; // original value was false. Removes the black border on the right side of viewport.
     public static boolean bilinearMinimapFiltering = false; // original value was false. smooths out jagged edges on the minimap and compass.
