@@ -27,7 +27,6 @@ public class Game extends GameShell {
     public static boolean hideRoofs = true; // original value would've been false
     public static boolean disableCRC = true; // original value would've been false
     public static boolean fullscreen = true; // original value would've been false. NOTE: This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale the window through properties. Changing uiScale during runtime won't work even with dispose().
-    public static double uiScale = 1.0;
     public static Game instance;
     public boolean jaggrabEnabled = true; // original value: false https://rune-server.org/runescape-development/rs2-server/informative-threads/161122-317-jaggrab-protocol.html#post1408763
     public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");
@@ -110,7 +109,11 @@ public class Game extends GameShell {
     public static void main(String[] args) throws UnknownHostException {
         System.setProperty("java.net.preferIPv6Addresses", "true");
         // System.setProperty("sun.java2d.uiScale.enabled", "false");
-        System.setProperty("sun.java2d.uiScale", Double.toString(uiScale));
+        if (Game.fullscreen) {
+            System.setProperty("sun.java2d.uiScale", "2.0");
+        } else {
+            System.setProperty("sun.java2d.uiScale", "1.0");
+        }
         System.out.println("RS2 user client - release #" + Signlink.clientversion);
 
         try {
