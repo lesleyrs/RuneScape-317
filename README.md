@@ -21,7 +21,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - ::toggleroofs command, with `hideRoofs` being `true` by default
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good. To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS to have fkeys work by themselves.
 - `System.setProperty("sun.java2d.uiScale", "1.0");` is set by default to avoid scaling issues, if you want to let Windows scale it up according to your resolution settings you can do the following: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale`. You have to do this for both `java.exe` and `javaw.exe` depending on how you load the game.
-- Fullscreen (not resizable) which simply doubles uiScale to stay pixel perfect, puts frame in center, and paints extra space black. If you let your OS scale the window as explained above then it likely won't work as it won't be able to fit.
+- Fullscreen (not resizable) which simply doubles uiScale to stay pixel perfect, paints extra space black, hides decorations, and puts frame in center. If you let your system scale the window as explained above then it likely won't work as it won't be able to fit.
 - Swapped out maven build system and dependencies for a makefile to avoid jar bloat and simplicity
 - Galkon's sound and music system[^2] without the stupid packet changes
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Set `disableCRC` to true as you can't use this to set the initial jaggrab or http address. This uses Jagex's RSA key[^1]:
