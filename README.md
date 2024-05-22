@@ -19,6 +19,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Hold mousewheel to rotate camera
 - Scroll mousewheel to scroll interfaces or zoom camera, `cameraZoom` set to `maxZoom` (6) by default which is arbitrary but works well when not increasing object render distance
 - ::toggleroofs command, with `hideRoofs` being `true` by default
+- Fix lines in transparent models like bank booths or ghostly (toggleable)
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good. To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS to have fkeys work by themselves.
 - `System.setProperty("sun.java2d.uiScale", "1.0");` is set by default to avoid scaling issues, if you want to let Windows scale it up according to your resolution settings you can do the following: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale`. You have to do this for both `java.exe` and `javaw.exe` depending on how you load the game.
 - Fullscreen (not resizable) which simply doubles uiScale to stay pixel perfect, paints extra space black, hides decorations, and puts frame in center. If you let your system scale the window as explained above then it likely won't work as it won't be able to fit.
