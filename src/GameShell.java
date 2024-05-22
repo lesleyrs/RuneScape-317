@@ -51,6 +51,19 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
         startThread(this, 1);
         requestFocus();
         setFocusTraversalKeysEnabled(false);
+        System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double scaleX = screenSize.getWidth() / width;
+        double scaleY = screenSize.getHeight() / height;
+        System.out.println(Math.floor(scaleX));
+        System.out.println(Math.floor(scaleY));
+        if (Game.fullscreen) {
+            if (scaleX >= scaleY) {
+                Game.uiScale = Math.floor(scaleY);
+            } else {
+                Game.uiScale = Math.floor(scaleX);
+            }
+        }
     }
 
     public void initApplet(int width, int height) {
