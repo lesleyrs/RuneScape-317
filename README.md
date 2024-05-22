@@ -24,7 +24,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Fullscreen (not resizable) which simply doubles uiScale to stay pixel perfect, paints extra space black, hides decorations, and puts frame in center. If you let your system scale the window as explained above then it likely won't work as it won't be able to fit.
 - Swapped out maven build system and dependencies for a makefile to avoid jar bloat and simplicity
 - Galkon's sound and music system[^2] without the stupid packet changes
-- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. Set `disableCRC` to true as you can't use this to set the initial jaggrab or http address. This uses Jagex's RSA key[^1]:
+- Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. It only appears if `disableCRC` is true as you can't use this to set the initial jaggrab or http address. It uses Jagex's RSA key[^1]:
 ```
 Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789
 Private exponent: 4563042879983685819415859508309337987464904274730456483940553788384065737798175536144539635545496149193181089921240252410947054964044522362195913220892133

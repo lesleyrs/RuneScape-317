@@ -10457,9 +10457,12 @@ public class Game extends GameShell {
             y += 15;
 
             fontBold12.drawStringTaggable("Password: " + StringUtil.toAsterisks(password) + (titleLoginField == 1 & loopCycle % 40 < 20 ? "@yel@|" : ""), (w / 2) - 88, y, 0xffffff, true);
-            y += 15;
 
-            fontBold12.drawStringTaggable("Server IP: " + server + (titleLoginField == 2 & loopCycle % 40 < 20 ? "@yel@|" : ""), (w / 2) - 87, y, 0xffffff, true);
+            if (disableCRC) {
+                y += 15;
+
+                fontBold12.drawStringTaggable("Server IP: " + server + (titleLoginField == 2 & loopCycle % 40 < 20 ? "@yel@|" : ""), (w / 2) - 87, y, 0xffffff, true);
+            }
 
             if (!hideButtons) {
                 int x = (w / 2) - 80;
@@ -11032,7 +11035,19 @@ public class Game extends GameShell {
                             password = password.substring(0, password.length() - 1);
                         }
                         if ((key == 9) || (key == 10) || (key == 13)) {
-                            titleLoginField = 2;
+                            if (disableCRC) {
+                                titleLoginField = 2;
+                            } else {
+                                if (key != 9) {
+                                    loginAttempts = 0;
+                                    login(username, password, false);
+
+                                    if (ingame) {
+                                        return;
+                                    }
+                                }
+                                titleLoginField = 0;
+                            }
                         }
                         if (valid) {
                             password += (char) key;
