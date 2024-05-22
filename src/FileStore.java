@@ -32,7 +32,7 @@ public class FileStore {
             int size = ((buf[0] & 0xff) << 16) + ((buf[1] & 0xff) << 8) + (buf[2] & 0xff);
             int sector = ((buf[3] & 0xff) << 16) + ((buf[4] & 0xff) << 8) + (buf[5] & 0xff);
 
-            // NOTE: comment out the following to load up to 377 cache, even though it isn't fully compatible (headicons, fullscreen interfaces)
+            // NOTE: comment out the following to load up to 377 cache, even though it isn't fully compatible (wildy map lava, headicons, fullscreen interfaces)
             if (size < 0 || size > 0x7a120) {
                 return null;
             }

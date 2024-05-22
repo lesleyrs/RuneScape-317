@@ -26,6 +26,8 @@ public class GameFrame extends Frame {
         }
         setLocationRelativeTo(null);
         setVisible(true);
+        // NOTE: check if toFront helps setting focus
+        toFront();
         transferFocus();
     }
 }

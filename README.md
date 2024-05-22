@@ -21,11 +21,13 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - ::toggleroofs command, with `hideRoofs` being `true` by default
 - Fix transparency overflow, triangles could have lines drawn at their seams at most camera angles in transparent models like bank booths or ghostly
 - Full 512px viewport, the client has a "safe rendering size" that it used but resulted in 511px being drawn instead of 512, despite the area being 512. So you were left with a black border on the right side.
+- Bilinear map filtering, smooths out jagged edges on the minimap and compass.
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good. To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS to have fkeys work by themselves.
 - `System.setProperty("sun.java2d.uiScale", "1.0");` is set by default to avoid scaling issues, if you want to let Windows scale it up according to your resolution settings you can do the following: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale`. You have to do this for both `java.exe` and `javaw.exe` depending on how you load the game.
 - Fullscreen (not resizable) which simply doubles uiScale to stay pixel perfect, paints extra space black, hides decorations, and puts frame in center. If you let your system scale the window as explained above then it likely won't work as it won't be able to fit.
 - Swapped out maven build system and dependencies for a makefile to avoid jar bloat and simplicity, and runs on Java 8 again.
 - Galkon's sound and music system[^2] without the stupid packet changes
+- Server IP address is being read from the filename if it is being run as a `.jar`, so you don't need to recompile to change IP.
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. It only appears if `disableCRC` is true as you can't use this to set the initial jaggrab or http address. It uses Jagex's RSA key[^1]:
 ```
 Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789
@@ -49,5 +51,5 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 [^3]: https://runewiki.org/archive/cache/packed/missing.txt https://www.youtube.com/watch?v=tZlj694lcxA https://oldschool.runescape.wiki/w/Graphical_updates_(historical) https://runescape.wiki/w/RuneTek#History https://runescape.wiki/w/Build_number https://runescape.wiki/w/Game_updates https://oldschool.runescape.wiki/w/Game_updates https://oldschool.runescape.wiki/w/User:Hlwys/Revisions - RS3 game updates page is missing some news posts compared to OSRS wiki
 
 ## Credits
-Many code snippets and ideas have been taken from other clients:
+Many code snippets and ideas have been taken from other clients, which in turn has been worked on by many more people:
 RuneScape-317, 317refactor, 2006scape, refactored-client-377, moparscape.

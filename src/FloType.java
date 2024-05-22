@@ -3,6 +3,8 @@
 // Decompiler options: packimports(3) 
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class FloType {
 
@@ -43,6 +45,12 @@ public class FloType {
                 return;
             } else if (code == 1) {
                 rgb = in.read24();
+                if (Game.snowyDecember) {
+                  Calendar date = new GregorianCalendar();
+                  if (date.get(Calendar.MONTH) + 1 == 12) {
+                      rgb = 0xffffff;
+                  }
+                }
                 setColor(rgb);
             } else if (code == 2) {
                 textureID = in.readU8();

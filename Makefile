@@ -10,8 +10,8 @@ recurse:
 	javac -d bin $(shell find src -name *.java)
 
 jar: build
-	jar cmvf META-INF/MANIFEST.MF 317.jar -C bin/ .
-	java -jar 317.jar 10 0 highmem members 32
+	jar cmvf META-INF/MANIFEST.MF localhost.jar -C bin/ .
+	java -jar localhost.jar 10 0 highmem members 32
 
 .PHONY: test
 test:
