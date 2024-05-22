@@ -25,7 +25,11 @@ public class Draw2D {
         top = 0;
         right = width;
         bottom = height;
-        boundX = right - 1;
+        if (Game.full512pxViewport) {
+            boundX = right;
+        } else {
+            boundX = right - 1;
+        }
         centerX = right / 2;
     }
 
@@ -46,7 +50,11 @@ public class Draw2D {
         Draw2D.top = top;
         Draw2D.right = right;
         Draw2D.bottom = bottom;
-        boundX = Draw2D.right - 1;
+        if (Game.full512pxViewport) {
+            boundX = Draw2D.right;
+        } else {
+            boundX = Draw2D.right - 1;
+        }
         centerX = Draw2D.right / 2;
         centerY = Draw2D.bottom / 2;
     }

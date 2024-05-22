@@ -900,7 +900,7 @@ public class Draw3D {
                 int alpha = Draw3D.alpha;
                 int invAlpha = 256 - Draw3D.alpha;
 
-                if (Game.fixTransparency) {
+                if (Game.fixTransparencyOverflow) {
                     while (--length >= 0) {
                         rgb = palette[color0 >> 8];
                         color0 += colorStep;
@@ -987,7 +987,7 @@ public class Draw3D {
             rgb = palette[color0 >> 8];
             color0 += colorStep;
             rgb = ((((rgb & 0xff00ff) * invAlpha) >> 8) & 0xff00ff) + ((((rgb & 0xff00) * invAlpha) >> 8) & 0xff00);
-            if (Game.fixTransparency) {
+            if (Game.fixTransparencyOverflow) {
                 dst[offset] = rgb + ((((dst[offset] & 0xff00ff) * alpha) >> 8) & 0xff00ff) + ((((dst[offset] & 0xff00) * alpha) >> 8) & 0xff00);
                 offset++;
             } else {
@@ -1328,7 +1328,7 @@ public class Draw3D {
 
         rgb = ((((rgb & 0xff00ff) * invAlpha) >> 8) & 0xff00ff) + ((((rgb & 0xff00) * invAlpha) >> 8) & 0xff00);
 
-        if (Game.fixTransparency) {
+        if (Game.fixTransparencyOverflow) {
             while (--length >= 0) {
                 dst[offset] = rgb + ((((dst[offset] & 0xff00ff) * alpha) >> 8) & 0xff00ff) + ((((dst[offset] & 0xff00) * alpha) >> 8) & 0xff00);
                 offset++;

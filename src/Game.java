@@ -22,11 +22,12 @@ public class Game extends GameShell {
 
     public static final int maxZoom = 6;
     public static final int minZoom = 3;
-    public static int cameraZoom = maxZoom; // original value would've been 3
-    public static boolean hideRoofs = true; // original value would've been false
-    public static boolean disableCRC = true; // original value would've been false
-    public static boolean fullscreen = false; // original value would've been false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale during runtime won't work even with dispose().
-    public static boolean fixTransparency = true; // original value would've been false, fixes the lines in transparent models like ghostly or bank booths. This changes index operand to 'offset' and adds 'offset++' below each line.
+    public static int cameraZoom = maxZoom; // original value was 3
+    public static boolean hideRoofs = true; // original value was false
+    public static boolean disableCRC = true; // original value was false
+    public static boolean fullscreen = false; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale during runtime won't work even with dispose().
+    public static boolean fixTransparencyOverflow = true; // original value was false, fixes the lines in transparent models like ghostly or bank booths. This changes index operand to 'offset' and adds 'offset++' below each line.
+    public static boolean full512pxViewport = true; // original value was false. Removes the black border on the right side of viewport.
     public static Game instance;
     public boolean jaggrabEnabled = true; // original value: false https://rune-server.org/runescape-development/rs2-server/informative-threads/161122-317-jaggrab-protocol.html#post1408763
     public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");
