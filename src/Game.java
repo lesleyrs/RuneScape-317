@@ -20,16 +20,16 @@ import java.util.zip.CRC32;
 
 public class Game extends GameShell {
 
+    public static boolean disableCRC = true; // original value was false
+    public static boolean fullscreen = true; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale later won't work even with dispose(). Trying to add a fullscreen toggle using dispose() and init() also causes runFlames to speed up (restoring original runFlames lag detection code doesn't solve this either).
     public static boolean snowyDecember = false;
     public static final int maxZoom = 6;
-    public static final int minZoom = 3;
-    public static int cameraZoom = maxZoom; // original value was 3
+    public static final int minZoom = 1;
+    public static int cameraZoom = 3; // original value was 3
     public static boolean hideRoofs = true; // original value was false
-    public static boolean disableCRC = true; // original value was false
-    public static boolean fullscreen = false; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale later won't work even with dispose(). Trying to add a fullscreen toggle using dispose() and init() also causes runFlames to speed up (restoring original runFlames lag detection code doesn't solve this either).
-    public static boolean fixTransparencyOverflow = true; // original value was false, fixes the lines in transparent models like ghostly or bank booths. This changes index operand to 'offset' and adds 'offset++' below each line.
+    public static boolean fixTransparencyOverflow = true; // original value was false, fixes lines in transparent models like ghostly or bank booths.
     public static boolean full512pxViewport = true; // original value was false. Removes the black border on the right side of viewport.
-    public static boolean bilinearMinimapFiltering = false; // original value was false. smooths out jagged edges on the minimap and compass.
+    public static boolean bilinearMinimapFiltering = true; // original value was false. smooths out jagged edges on the minimap and compass.
     public static Game instance;
     public boolean jaggrabEnabled = true; // original value: false https://rune-server.org/runescape-development/rs2-server/informative-threads/161122-317-jaggrab-protocol.html#post1408763
     public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");

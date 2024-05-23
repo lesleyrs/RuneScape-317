@@ -346,10 +346,10 @@ public class Image24 extends DoublyLinkedList.Node {
                         int y1 = srcY >> 16;
                         int x2 = x1 + 1;
                         int y2 = y1 + 1;
-                        int sampleColor1 = pixels[x1 + y1 * width];
-                        int sampleColor2 = pixels[x2 + y1 * width];
-                        int sampleColor3 = pixels[x1 + y2 * width];
-                        int sampleColor4 = pixels[x2 + y2 * width];
+                        int sampleColor1 = pixels[x1 + y1 * this.width];
+                        int sampleColor2 = pixels[x2 + y1 * this.width];
+                        int sampleColor3 = pixels[x1 + y2 * this.width];
+                        int sampleColor4 = pixels[x2 + y2 * this.width];
                         int x1Distance = (srcX >> 8) - (x1 << 8);
                         int y1Distance = (srcY >> 8) - (y1 << 8);
                         int x2Distance = (x2 << 8) - (srcX >> 8);

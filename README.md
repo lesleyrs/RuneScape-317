@@ -17,7 +17,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Ability to use k/m/b for entering amounts, and allow entering over integer maximum
 - Left click compass to make the camera face north
 - Hold mousewheel to rotate camera
-- Scroll mousewheel to scroll interfaces or zoom camera, `cameraZoom` set to `maxZoom` (6) by default which is arbitrary but works well when not increasing object render distance
+- Scroll mousewheel to scroll interfaces or zoom camera, `minZoom` and `maxZoom` are arbitrary but work well when not increasing object render distance
 - ::toggleroofs command, with `hideRoofs` being `true` by default
 - Fix transparency overflow, triangles could have lines drawn at their seams at most camera angles in transparent models like bank booths or ghostly
 - Full 512px viewport, the client has a "safe rendering size" that it used but resulted in 511px being drawn instead of 512, despite the area being 512. So you were left with a black border on the right side.
