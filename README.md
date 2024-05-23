@@ -22,6 +22,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Fix transparency overflow, triangles could have lines drawn at their seams at most camera angles in transparent models like bank booths or ghostly
 - Full 512px viewport, the client has a "safe rendering size" that it used but resulted in 511px being drawn instead of 512, despite the area being 512. So you were left with a black border on the right side.
 - Bilinear map filtering, smooths out jagged edges on the minimap and compass.
+- "Snow" in december
 - Added F-keys for switching tabs, defaults past f4 are arbitrary but should be good. To use fkeys on most laptops you need to press the `Fn` key in combination with the fkey. This is obviously awful so you have to change it in UEFI/BIOS to have fkeys work by themselves.
 - `System.setProperty("sun.java2d.uiScale", "1.0");` is set by default to avoid scaling issues, if you want to let Windows scale it up according to your resolution settings you can do the following: `task manager>java process properties>compatibility tab>high dpi settings>ignore high dpi scaling>let system scale`. You have to do this for both `java.exe` and `javaw.exe` depending on how you load the game.
 - Fullscreen (not resizable) which simply doubles uiScale to stay pixel perfect, paints extra space black, hides decorations, and puts frame in center. If you let your system scale the window as explained above then it likely won't work as it won't be able to fit.
