@@ -31,7 +31,6 @@ public class Game extends GameShell {
     public static boolean full512pxViewport = true; // original value was false. Removes the black border on the right side of viewport.
     public static boolean bilinearMinimapFiltering = true; // original value was false. smooths out jagged edges on the minimap and compass.
     public static Game instance;
-    public boolean jaggrabEnabled = true; // original value: false https://rune-server.org/runescape-development/rs2-server/informative-threads/161122-317-jaggrab-protocol.html#post1408763
     public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");
     public static final BigInteger RSA_EXPONENT = new BigInteger("58778699976184461502525193738213253649000149147835990136706041084440742975821");
     public static final int[][] designPartColor = {{6798, 107, 10283, 16, 4797, 7744, 5799, 4634, 33697, 22433, 2983, 54193}, {8741, 12, 64030, 43162, 7735, 8404, 1701, 38430, 24094, 10153, 56621, 4783, 1341, 16578, 35003, 25239}, {25238, 8742, 12, 64030, 43162, 7735, 8404, 1701, 38430, 24094, 10153, 56621, 4783, 1341, 16578, 35003}, {4626, 11146, 6439, 12, 4758, 10270}, {4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574}};
@@ -306,6 +305,7 @@ public class Game extends GameShell {
     public Image8 imageRedstone2hv;
     public Image24 imageMapmarker0;
     public Image24 imageMapmarker1;
+    public boolean jaggrabEnabled = true; // original value: false https://rune-server.org/runescape-development/rs2-server/informative-threads/161122-317-jaggrab-protocol.html#post1408763
     public int lastWaveID = -1;
     public int weightCarried;
     public MouseRecorder mouseRecorder;
