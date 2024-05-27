@@ -80,11 +80,7 @@ public class BitmapFont {
         }
 
         // only q8_full uses this flag.
-        if (quill) {
-            charAdvance[' '] = charAdvance['I'];
-        } else {
-            charAdvance[' '] = charAdvance['i'];
-        }
+        charAdvance[' '] = quill ? charAdvance['I'] : charAdvance['i'];
     }
 
     /**
