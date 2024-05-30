@@ -21,7 +21,7 @@ import java.util.zip.CRC32;
 public class Game extends GameShell {
 
     public static boolean disableCRC = true; // original value was false
-    public static boolean fullscreen = true; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale later won't work even with dispose(). Trying to add a fullscreen toggle using dispose() and init() also causes runFlames to speed up (restoring original runFlames lag detection code doesn't solve this either).
+    public static boolean fullscreen = false; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale later won't work even with dispose(). Trying to add a fullscreen toggle using dispose() and init() also causes runFlames to speed up (restoring original runFlames lag detection code doesn't solve this either).
     public static boolean snowyDecember = false;
     public static final int maxZoom = 6;
     public static final int minZoom = 1;
