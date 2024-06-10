@@ -53,4 +53,4 @@ Public exponent: 587786999761844615025251937382132536490001491478359901367060410
 
 ## Credits
 Many code snippets and ideas have been taken from other clients, which in turn has been worked on by many more people:
-RuneScape-317, 317refactor, 2006scape, refactored-client-377, moparscape.
+RuneScape-317, 317refactor, 2006scape, refactored-client-377, moparscape/silabsoft.

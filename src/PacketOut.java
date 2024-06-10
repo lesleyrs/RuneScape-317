@@ -1,6 +1,6 @@
 public final class PacketOut {
 
-    // the values at each index are a link to an opcodes value which is the index itself, as the array gets shuffled each revision
+    // The values at each index are a link to an opcodes value which is the index itself, as the array gets shuffled each revision.
 
     public static final int[] packetMap = {
         6, 21, 25, 33, 254, 127, 183, 87, 216, 215, // 0
