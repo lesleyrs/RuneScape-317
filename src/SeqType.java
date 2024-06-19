@@ -113,7 +113,7 @@ public class SeqType {
      *
      * @see Game#readNPCUpdates()
      */
-    public int replayStyle = 1;
+    public int replayStyle = 2;
 
     public SeqType() {
     }
