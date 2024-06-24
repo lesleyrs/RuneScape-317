@@ -521,7 +521,7 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
         } else if (code == KeyEvent.VK_PAGE_DOWN) {
             value = 1003;
         } else if (code == KeyEvent.VK_V) {
-            if (e.isControlDown() && Game.instance.chatTyped.length() < 80) {
+            if (e.isControlDown() && Game.instance.chatTyped.length() < 80 && Game.pasteClipboard) {
                 String clipboard = "";
                 try {
                  clipboard = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
