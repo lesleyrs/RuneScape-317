@@ -29,6 +29,7 @@ Based on [Moparisthebest's release](https://www.moparisthebest.com/downloads/rs3
 - Swapped out maven build system and dependencies for a makefile to avoid jar bloat and simplicity, and runs on Java 8 again.
 - Galkon's sound and music system[^2] without the stupid packet changes
 - Server IP address is being read from the filename if it is being run as a `.jar`, so you don't need to recompile to change IP.
+- `Ctrl-v` to paste clipboard into public or private chat.
 - Added moparscape/silabsoft-like server IP login field, leave it empty for localhost. It only appears if `disableCRC` is true as you can't use this to set the initial jaggrab or http address. It uses Jagex's RSA key[^1]:
 ```
 Modulus: 7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789

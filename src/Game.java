@@ -20,16 +20,18 @@ import java.util.zip.CRC32;
 
 public class Game extends GameShell {
 
-    public static boolean disableCRC = true; // original value was false
-    public static boolean fullscreen = false; // original value was false. This doubles uiScale which is a resolution of (765 * 2, 503 * 2) and you must not let your system scale up the window through properties. Changing uiScale later won't work even with dispose(). Trying to add a fullscreen toggle using dispose() and init() also causes runFlames to speed up (restoring original runFlames lag detection code doesn't solve this either).
-    public static boolean snowyDecember = false;
+    // NOTE: all settings were false by default
     public static final int maxZoom = 6;
     public static final int minZoom = 1;
     public static int cameraZoom = 3; // original value was 3
-    public static boolean hideRoofs = true; // original value was false
-    public static boolean fixTransparencyOverflow = true; // original value was false, fixes lines in transparent models like ghostly or bank booths.
-    public static boolean full512pxViewport = true; // original value was false. Removes the black border on the right side of viewport.
-    public static boolean bilinearMinimapFiltering = true; // original value was false. smooths out jagged edges on the minimap and compass.
+    public static boolean hideRoofs = true;
+    public static boolean fixTransparencyOverflow = true; // Fixes lines in transparent models like ghostly or bank booths.
+    public static boolean full512pxViewport = true; // Removes the black border on the right side of viewport.
+    public static boolean bilinearMinimapFiltering = true; // Smooths out jagged edges on the minimap and compass.
+    public static boolean pasteClipboard = true;
+    public static boolean disableCRC = true;
+    public static boolean snowyDecember = false;
+    public static boolean fullscreen = false; // Doubles uiScale (765 * 2, 503 * 2). You can't let the system scale the window through properties and changing uiScale later won't work. Trying to add a fullscreen toggle using dispose() and init() also causes runFlames to speed up?
     public static Game instance;
     public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");
     public static final BigInteger RSA_EXPONENT = new BigInteger("58778699976184461502525193738213253649000149147835990136706041084440742975821");

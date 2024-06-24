@@ -3,6 +3,8 @@
 // Decompiler options: packimports(3) 
 
 import java.awt.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.*;
 import java.io.IOException;
 
@@ -518,6 +520,30 @@ public abstract class GameShell extends Canvas implements Runnable, MouseListene
             value = 1002;
         } else if (code == KeyEvent.VK_PAGE_DOWN) {
             value = 1003;
+        } else if (code == KeyEvent.VK_V) {
+            if (e.isControlDown() && Game.instance.chatTyped.length() < 80) {
+                String clipboard = "";
+                try {
+                 clipboard = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+                } catch (UnsupportedFlavorException | IOException err) {
+                    err.printStackTrace();
+                }
+                if (clipboard.length() > 80) {
+                    clipboard = clipboard.substring(0, 80);
+                }
+                for (int i = 0; i < clipboard.length(); i++) {
+                    char key = clipboard.charAt(i);
+                    if ((key >= 32) && (key <= 122)) {
+                        if (Game.instance.chatInterfaceID == -1 && Game.instance.chatTyped.length() < 80) {
+                            Game.instance.chatTyped += key;
+                            Game.instance.redrawChatback = true;
+                        } else if (Game.instance.showSocialInput && Game.instance.socialInput.length() < 80 && Game.instance.socialAction == 3) {
+                            Game.instance.socialInput += key;
+                            Game.instance.redrawChatback = true;
+                        }
+                    }
+                }
+            }
         }
 
         if ((value > 0) && (value < 128)) {
